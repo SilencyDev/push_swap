@@ -6,40 +6,32 @@
 /*   By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 17:23:22 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/03/30 18:00:08 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/03/31 17:55:14 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "common.h"
+#include "../includes/common.h"
 
-void	pa(t_data *d)
+void	pa(t_data *data)
 {
-	int	ma_max;
-	int	mb_max;
-	
-	ma_max = d->ma;
-	mb_max = d->mb;
-	while (--ma_max > 0)
-		d->ta[ma_max + 1] = d->ta[ma_max];
-	d->ta[0] = d->tb;
-	d->ma += 1;
-	while (--mb_max > 0)
-		d->tb[mb_max - 1] = d->tb[mb_max];
-	d->mb -= 1;
+	t_stack	*first_a;
+
+	first_a->next = data->stack_a;
+	first_a->previous = NULL;
+	first_a->i = data->stack_b->i;
+	data->stack_a = first_a;
+	data->stack_b = data->stack_b->next;
+	data->stack_b->previous = NULL;
 }
 
-void	pb(t_data *d)
+void	pb(t_data *data)
 {
-	int	ma_max;
-	int	mb_max;
-	
-	ma_max = d->ma;
-	mb_max = d->mb;
-	while (--mb_max > 0)
-		d->tb[mb_max + 1] = d->tb[mb_max];
-	d->tb[0] = d->ta;
-	d->mb += 1;
-	while (--ma_max > 0)
-		d->ta[ma_max - 1] = d->ta[mb_max];
-	d->ma -= 1;
+	t_stack	*first_b;
+
+	first_b->next = data->stack_b;
+	first_b->previous = NULL;
+	first_b->i = data->stack_a->i;
+	data->stack_b = first_b;
+	data->stack_a = data->stack_a->next;
+	data->stack_a->previous = NULL;
 }

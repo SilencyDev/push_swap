@@ -6,32 +6,32 @@
 /*   By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 16:24:44 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/03/30 16:44:06 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/03/31 17:32:20 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "common.h"
+#include "../includes/common.h"
 
-void	sa(t_data *d)
+void	sa(t_data *data)
 {
-	int tmp;
+	int	init;
 
-	tmp = d->ta[0];
-	d->ta[0] = d->ta[1];
-	d->ta[1] = tmp;
+	init = data->stack_a->i;
+	data->stack_a->i = data->stack_a->next->i;
+	data->stack_a->next->i = init;
 }
 
-void	sb(t_data *d)
+void	sb(t_data *data)
 {
-	int tmp;
+	int	init;
 
-	tmp = d->tb[0];
-	d->tb[0] = d->tb[1];
-	d->tb[1] = tmp;
+	init = data->stack_b->i;
+	data->stack_b->i = data->stack_b->next->i;
+	data->stack_b->next->i = init;
 }
 
-void	ss(t_data *d)
+void	ss(t_data *data)
 {
-	sa(d);
-	sb(d);
+	sa(data);
+	sb(data);
 }

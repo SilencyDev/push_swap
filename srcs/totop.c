@@ -6,36 +6,38 @@
 /*   By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 16:55:30 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/03/30 17:30:29 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/03/31 17:54:10 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "common.h"
+#include "../includes/common.h"
 
-void	rra(t_data *d)
+void		rra(t_data *data)
 {
-	int tmp;
-	int mtab_init;
+	t_stack	*s_init;
 
-	mtab_init = d->ma;
-	tmp = d->ta[mtab_init - 1];
-	mtab_init -= 1;
-	while (--mtab_init > 0)
-		d->ta[mtab_init + 1] = d->ta[mtab_init];
-	d->ta[0] = tmp;
+	s_init = data->stack_a;
+	while (data->stack_a->next)
+		data->stack_a = data->stack_a->next;
+	data->stack_a->next = s_init;
+	s_init->previous = data->stack_a;
+	(data->stack_a->previous)->next = NULL;
+	data->stack_a->previous = NULL;
+	data->stack_a = s_init;
 }
 
-void	rrb(t_data *d)
+void		rrb(t_data *data)
 {
-	int tmp;
-	int mtab_init;
+	t_stack	*s_init;
 
-	mtab_init = d->mb;
-	tmp = d->tb[mtab_init - 1];
-	mtab_init -= 1;
-	while (--mtab_init > 0)
-		d->tb[mtab_init + 1] = d->tb[mtab_init];
-	d->tb[0] = tmp;
+	s_init = data->stack_b;
+	while (data->stack_b->next)
+		data->stack_b = data->stack_b->next;
+	data->stack_b->next = s_init;
+	s_init->previous = data->stack_b;
+	(data->stack_b->previous)->next = NULL;
+	data->stack_b->previous = NULL;
+	data->stack_b = s_init;
 }
 
 void	rrr(t_data *d)
