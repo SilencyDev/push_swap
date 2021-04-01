@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+         #
+#    By: kmacquet <kmacquet@student.42nice.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/30 13:54:50 by kmacquet          #+#    #+#              #
-#    Updated: 2021/03/31 16:23:18 by kmacquet         ###   ########.fr        #
+#    Updated: 2021/04/01 18:16:27 by kmacquet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,11 +14,13 @@ CC = gcc
 FLAGS = -Wall -Wextra -Werror -I./includes
 NAME1 = checker
 SRCS1 = srcs/checker.c srcs/swap.c srcs/push.c \
-		srcs/tobottom.c srcs/totop.c
+		srcs/tobottom.c srcs/totop.c srcs/utils.c \
+		srcs/error.c srcs/libft.c
 OBJS1 = $(SRCS1:.c=.o)
 NAME2 = push_swap
 SRCS2 =	srcs/push_swap.c srcs/swap.c srcs/push.c \
-		srcs/tobottom.c srcs/totop.c
+		srcs/tobottom.c srcs/totop.c srcs/utils.c \
+		srcs/error.c srcs/libft.c
 OBJS2 = $(SRCS2:.c=.o)
 RM = rm -rf
 

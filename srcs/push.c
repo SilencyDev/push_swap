@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kmacquet <kmacquet@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 17:23:22 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/03/31 17:55:14 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/04/01 19:38:43 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,30 @@
 
 void	pa(t_data *data)
 {
-	t_stack	*first_a;
+	t_stack *stack;
 
-	first_a->next = data->stack_a;
-	first_a->previous = NULL;
-	first_a->i = data->stack_b->i;
-	data->stack_a = first_a;
-	data->stack_b = data->stack_b->next;
-	data->stack_b->previous = NULL;
+	stack = data->stack_b;
+	if (data->stack_b->next)
+	{
+		data->stack_b = data->stack_b->next;
+		data->stack_b->previous = NULL;
+	}
+	else
+		data->stack_b = NULL;
+	ft_lstadd_front(&data->stack_a, stack);
 }
 
 void	pb(t_data *data)
 {
-	t_stack	*first_b;
+	t_stack *stack;
 
-	first_b->next = data->stack_b;
-	first_b->previous = NULL;
-	first_b->i = data->stack_a->i;
-	data->stack_b = first_b;
-	data->stack_a = data->stack_a->next;
-	data->stack_a->previous = NULL;
+	stack = data->stack_a;
+	if (data->stack_a->next)
+	{
+		data->stack_a = data->stack_a->next;
+		data->stack_a->previous = NULL;
+	}
+	else
+		data->stack_a = NULL;
+	ft_lstadd_front(&data->stack_b, stack);
 }
