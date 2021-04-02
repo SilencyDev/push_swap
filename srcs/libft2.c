@@ -6,7 +6,7 @@
 /*   By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 13:47:39 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/04/02 14:35:32 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/04/02 18:07:04 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,16 +80,21 @@ char		**ft_split_str(char *s, char *charset, t_data *data)
 
 long int		ft_atoi(char *s)
 {
-	long int	i;
+	int	i;
 	int	sign;
-	int	result;
+	long int	result;
 
 	sign = 1;
 	i = 0;
 	if (s[i] == '-' || s[i] == '+')
 		if (s[i++] == '-')
 			sign = -1;
-	while (s[i] >= '0' && s[i] <= '9')
-		result = result * 10 + (s[i++] - '0');
+	if (s[i] >= '0' && s[i] <= '9')
+		while (s[i] >= '0' && s[i] <= '9')
+			result = result * 10 + (s[i++] - '0');
+	else
+		ft_error("Argument isn't an integer");
+	if (result > INT_MAX || result < INT_MIN)
+		ft_error("Arguments can't be higher/lower than INT");
 	return (result * sign);
 }
