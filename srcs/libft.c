@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmacquet <kmacquet@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 13:45:16 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/04/01 18:51:45 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/04/02 14:37:53 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,21 +60,17 @@ t_stack	*ft_lstnew(t_stack *next, t_stack *previous)
 	if (!(list = malloc(sizeof(t_stack))))
 		return (NULL);
 	list->next = next;
-	list->previous;
+	list->previous = previous;
 	return (list);
 }
 
-void	ft_delfront(t_stack **slst)
+t_command	*ft_lstnew2(t_command *next, t_command *previous)
 {
-	if ((*slst)->next)
-	{
-		(*slst) = (*slst)->next;
-		free((*slst)->previous);
-		(*slst)->previous = NULL;
-	}
-	else
-	{
-		free((*slst));
-		(*slst) = NULL;
-	}
+	t_command	*list;
+
+	if (!(list = malloc(sizeof(t_command))))
+		return (NULL);
+	list->next = next;
+	list->previous = previous;
+	return (list);
 }
