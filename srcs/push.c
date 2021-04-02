@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmacquet <kmacquet@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 17:23:22 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/04/01 19:38:43 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/04/02 16:12:58 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	pa(t_data *data)
 {
 	t_stack *stack;
 
+	if (!data->stack_b)
+		ft_error("Can't push to stack A when B is empty");
 	stack = data->stack_b;
 	if (data->stack_b->next)
 	{
@@ -31,6 +33,8 @@ void	pb(t_data *data)
 {
 	t_stack *stack;
 
+	if (!data->stack_a)
+		ft_error("Can't push to stack B when A is empty");
 	stack = data->stack_a;
 	if (data->stack_a->next)
 	{

@@ -6,7 +6,7 @@
 /*   By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 14:30:01 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/04/02 14:46:26 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/04/02 16:19:07 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,22 +32,34 @@ void		parsing(int ac, char **av, t_data *data)
 	int		ret;
 	char	*line;
 	t_command	*tmp;
+	t_command	*ctmp;
+	int		i;
 
 	ret = 1;
 	line = NULL;
 	while (ret == 1)
 	{
+		i = 0;
 		ret = get_next_line(&line);
-		printf("%s\n", line);
 		if (!data->command)
+		{
 			data->command = ft_lstnew2(NULL, NULL);
+			while (*line)
+				data->command->cmd[i++] = *line++;
+			data->command->cmd[i] = 0;
+			ctmp = data->command;
+		}
 		else
 		{
 			tmp = data->command;
 			data->command = ft_lstnew2(NULL, data->command->previous);
 			tmp->next = data->command;
+			while (*line)
+				data->command->cmd[i++] = *line++;
+			data->command->cmd[i] = 0;
 		}
 	}
+	data->command = ctmp;
 }
 
 int	main(int ac, char **av)
@@ -103,40 +115,99 @@ int	main(int ac, char **av)
 
 	if (!data->stack_a)
 		return (0);
-	printf("test");
 	print_stack(data);
+	while (data->command)
+	{
+		if (data->command->cmd[0] && data->command->cmd[0] == 's')
+		{
+			if (data->command->cmd[1] && data->command->cmd[1] == 'a'
+				&& !data->command->cmd[2])
+				sa(data);
+			else if (data->command->cmd[1] && data->command->cmd[1] == 'b'
+				&& !data->command->cmd[2])
+				sb(data);
+			else if (data->command->cmd[1] && data->command->cmd[1] == 's'
+				&& !data->command->cmd[2])
+				ss(data);
+			else
+				ft_error("Wrong commands");
+		}
+		else if (data->command->cmd[0] && data->command->cmd[0] == 'r')
+		{
+			if (data->command->cmd[1] && data->command->cmd[1] == 'a'
+				&& !data->command->cmd[2])
+				ra(data);
+			else if (data->command->cmd[1] && data->command->cmd[1] == 'b'
+				&& !data->command->cmd[2])
+				rb(data);
+			else if (data->command->cmd[1] && data->command->cmd[1] == 'r'
+				&& !data->command->cmd[2])
+				rr(data);
+			else
+				ft_error("Wrong commands");
+		}
+		else if (data->command->cmd[0] && data->command->cmd[0] == 'r'
+				&& data->command->cmd[1] && data->command->cmd[1] == 'r')
+		{
+			if (data->command->cmd[2] && data->command->cmd[2] == 'a'
+				&& !data->command->cmd[3])
+				rra(data);
+			else if (data->command->cmd[2] && data->command->cmd[2] == 'b'
+				&& !data->command->cmd[3])
+				rrb(data);
+			else if (data->command->cmd[2] && data->command->cmd[2] == 'r'
+				&& !data->command->cmd[3])
+				rrr(data);
+			else
+				ft_error("Wrong commands");
+		}
+		else if (data->command->cmd[0] && data->command->cmd[0] == 'p')
+		{
+			if (data->command->cmd[1] && data->command->cmd[1] == 'a'
+				&& !data->command->cmd[2])
+				pa(data);
+			else if (data->command->cmd[1] && data->command->cmd[1] == 'b'
+				&& !data->command->cmd[2])
+				pb(data);
+			else
+				ft_error("Wrong commands");
+		}
+		else
+			ft_error("Wrong commands");
+		print_stack(data);
+		data->command = data->command->next;
+	}
+	// sa(data);
+	// print_stack(data);
 
-	sa(data);
-	print_stack(data);
+	// pb(data);
+	// print_stack(data);
 
-	pb(data);
-	print_stack(data);
+	// pb(data);
+	// print_stack(data);
 
-	pb(data);
-	print_stack(data);
+	// pb(data);
+	// print_stack(data);
 
-	pb(data);
-	print_stack(data);
+	// pa(data);
+	// print_stack(data);
 
-	pa(data);
-	print_stack(data);
+	// rb(data);
+	// print_stack(data);
 
-	rb(data);
-	print_stack(data);
+	// pa(data);
+	// print_stack(data);
 
-	pa(data);
-	print_stack(data);
-
-	sa(data);
-	print_stack(data);
+	// sa(data);
+	// print_stack(data);
 	
-	pa(data);
-	print_stack(data);
+	// pa(data);
+	// print_stack(data);
 
-	pb(data);
-	sa(data);
-	pa(data);
-	print_stack(data);
+	// pb(data);
+	// sa(data);
+	// pa(data);
+	// print_stack(data);
 	
 	is_solved(data);
 }

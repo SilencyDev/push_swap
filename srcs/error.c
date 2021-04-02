@@ -6,7 +6,7 @@
 /*   By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 11:03:14 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/04/02 11:36:11 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/04/02 16:26:31 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void	ft_error(char *s)
 void	ft_status(int status)
 {
 	if (status > 0)
-		write(1, "OK", 2);
+		write(1, "OK\n", 3);
 	else
-		write(1, "KO", 2);
+		write(1, "KO\n", 3);
 	exit(0);
 }
