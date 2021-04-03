@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+         #
+#    By: kmacquet <kmacquet@student.42nice.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/30 13:54:50 by kmacquet          #+#    #+#              #
-#    Updated: 2021/04/02 17:01:29 by kmacquet         ###   ########.fr        #
+#    Updated: 2021/04/03 16:17:59 by kmacquet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 

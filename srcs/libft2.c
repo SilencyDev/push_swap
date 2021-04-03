@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kmacquet <kmacquet@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 13:47:39 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/04/02 18:07:04 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/04/03 17:35:15 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ long int		ft_atoi(char *s)
 
 	sign = 1;
 	i = 0;
+	result = 0;
 	if (s[i] == '-' || s[i] == '+')
 		if (s[i++] == '-')
 			sign = -1;
@@ -93,8 +94,8 @@ long int		ft_atoi(char *s)
 		while (s[i] >= '0' && s[i] <= '9')
 			result = result * 10 + (s[i++] - '0');
 	else
-		ft_error("Argument isn't an integer");
+		ft_error("Argument isn't an integer", NULL);
 	if (result > INT_MAX || result < INT_MIN)
-		ft_error("Arguments can't be higher/lower than INT");
+		ft_error("Arguments can't be higher/lower than INT", NULL);
 	return (result * sign);
 }

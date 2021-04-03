@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kmacquet <kmacquet@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 16:59:14 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/04/02 18:09:49 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/04/03 17:38:09 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,16 @@ void		parsing_cmd(t_data *data)
 
 	ret = 1;
 	line = NULL;
+	ctmp = NULL;
 	while (ret == 1)
 	{
-		i = 0;
+		i = -1;
 		ret = get_next_line(&line);
 		if (!data->command)
 		{
 			data->command = ft_lstnew2(NULL, NULL);
-			while (*line)
-				data->command->cmd[i++] = *line++;
+			while (line[++i])
+				data->command->cmd[i] = line[i];
 			data->command->cmd[i] = 0;
 			ctmp = data->command;
 		}
@@ -39,16 +40,21 @@ void		parsing_cmd(t_data *data)
 			tmp = data->command;
 			data->command = ft_lstnew2(NULL, data->command->previous);
 			tmp->next = data->command;
-			while (*line)
-				data->command->cmd[i++] = *line++;
+			while (line[++i])
+				data->command->cmd[i] = line[i];
 			data->command->cmd[i] = 0;
 		}
+		free(line);
 	}
-	data->command = ctmp;
+	if (ctmp)
+		data->command = ctmp;
 }
 
 void	check_cmd(t_data *data)
 {
+	t_command	*init;
+
+	init = data->command;
 	while (data->command)
 	{
 		if (data->command->cmd[0] && data->command->cmd[0] == 's')
@@ -63,7 +69,7 @@ void	check_cmd(t_data *data)
 				&& !data->command->cmd[2])
 				ss(data);
 			else
-				ft_error("Wrong commands");
+				ft_error("Wrong commands", data);
 		}
 		else if (data->command->cmd[0] && data->command->cmd[0] == 'r')
 		{
@@ -77,7 +83,7 @@ void	check_cmd(t_data *data)
 				&& !data->command->cmd[2])
 				rr(data);
 			else
-				ft_error("Wrong commands");
+				ft_error("Wrong commands", data);
 		}
 		else if (data->command->cmd[0] && data->command->cmd[0] == 'r'
 				&& data->command->cmd[1] && data->command->cmd[1] == 'r')
@@ -92,7 +98,7 @@ void	check_cmd(t_data *data)
 				&& !data->command->cmd[3])
 				rrr(data);
 			else
-				ft_error("Wrong commands");
+				ft_error("Wrong commands", data);
 		}
 		else if (data->command->cmd[0] && data->command->cmd[0] == 'p')
 		{
@@ -103,13 +109,14 @@ void	check_cmd(t_data *data)
 				&& !data->command->cmd[2])
 				pb(data);
 			else
-				ft_error("Wrong commands");
+				ft_error("Wrong commands", data);
 		}
 		else
-			ft_error("Wrong commands");
+			ft_error("Wrong commands", data);
 		print_stack(data);
 		data->command = data->command->next;
 	}
+	data->command = init;
 }
 
 void	parsing_nb(t_data *data, char **av)
@@ -136,7 +143,9 @@ void	parsing_nb(t_data *data, char **av)
 			tmp->next = data->stack_a;
 			data->stack_a->i = ft_atoi(number[y]);
 		}
+		free(number[y]);
 		y++;
 	}
+	free(number);
 	data->stack_a = init;
 }

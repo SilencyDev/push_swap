@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   common.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kmacquet <kmacquet@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 16:31:02 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/04/02 18:10:01 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/04/03 17:41:57 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,9 @@ struct			s_stack
 	t_stack		*previous;
 };
 
+void			ft_free2(t_command *command);
+void			ft_free(t_stack *data);
+void			check_cmd(t_data *data);
 t_data			*init(t_data *data);
 void			parsing_nb(t_data *data, char **av);
 t_command		*ft_lstnew2(t_command *next, t_command *previous);
@@ -55,7 +58,7 @@ int				ft_countword(char *str, char *charset);
 int				get_next_line(char **line);
 void			parsing_cmd(t_data *data);
 void			is_solved(t_data *data);
-void			ft_status(int status);
+void			ft_status(int status, t_data *data);
 void			print_stack(t_data *data);
 void			ft_lstadd_front(t_stack **slst, t_stack *new);
 void			ft_lstadd_back(t_stack **alst, t_stack *new);
@@ -63,7 +66,7 @@ t_stack			*ft_lstlast(t_stack *lst);
 t_stack			*ft_lstfirst(t_stack *lst);
 t_stack			*ft_lstnew(t_stack *next, t_stack *previous);
 int				ft_strlen(char *s);
-void			ft_error(char *s);
+void			ft_error(char *s, t_data *data);
 void			pa(t_data *data);
 void			pb(t_data *data);
 void			sa(t_data *stack_a);

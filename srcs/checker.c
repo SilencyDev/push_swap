@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kmacquet <kmacquet@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 14:30:01 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/04/02 17:08:07 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/04/03 17:12:40 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,24 @@
 
 void	is_solved(t_data *data)
 {
+	t_stack	*init;
+
+	init = data->stack_a;
 	if (!data->stack_a)
-		ft_status(0);
+		ft_status(0, data);
 	while (data->stack_a)
 	{
 		if ((data->stack_a->next
 			&& data->stack_a->i > data->stack_a->next->i)
 			|| data->stack_b)
-			ft_status(0);
+		{
+			data->stack_a = init;
+			ft_status(0, data);
+		}
 		data->stack_a = data->stack_a->next;
 	}
-	ft_status(1);
+	data->stack_a = init;
+	ft_status(1, data);
 }
 
 t_data	*init(t_data *data)
@@ -37,15 +44,19 @@ t_data	*init(t_data *data)
 
 int	main(int ac, char **av)
 {
-	t_data	*data;
+	t_data	data;
 
-	data = malloc(sizeof(t_data));
-	data = init(data);
-	parsing_nb(data, av);
-	parsing_cmd(data);
-	if (!data->stack_a)
-		return (0);
-	print_stack(data);
-	check_cmd(data);
-	is_solved(data);
+	if (ac >= 2)
+	{
+		data = *init(&data);
+		parsing_nb(&data, av);
+		parsing_cmd(&data);
+		if (!data.stack_a)
+			return (0);
+		print_stack(&data);
+		if (data.command)
+			check_cmd(&data);
+		is_solved(&data);
+	}
+	return (0);
 }
