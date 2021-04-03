@@ -6,7 +6,7 @@
 /*   By: kmacquet <kmacquet@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 16:31:02 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/04/03 18:20:23 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/04/03 20:32:54 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ struct			s_stack
 	t_stack		*previous;
 };
 
+void			xxs_algo(t_data *data);
+void			solving(t_data *data, int ac);
 void			parsing_nb2(t_data *data, char **av, int ac);
 void			ft_free2(t_command *command);
 void			ft_free(t_stack *data);
@@ -58,7 +60,7 @@ void			ft_strcpy(char *start, char *str, char *dest);
 int				ft_countword(char *str, char *charset);
 int				get_next_line(char **line);
 void			parsing_cmd(t_data *data);
-void			is_solved(t_data *data);
+int				is_solved(t_data *data, int push_swap);
 void			ft_status(int status, t_data *data);
 void			print_stack(t_data *data);
 void			ft_lstadd_front(t_stack **slst, t_stack *new);

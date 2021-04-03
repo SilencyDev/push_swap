@@ -6,7 +6,7 @@
 /*   By: kmacquet <kmacquet@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 11:03:14 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/04/03 17:43:42 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/04/03 21:20:43 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ void	ft_error(char *s, t_data *data)
 
 void	ft_status(int status, t_data *data)
 {
-	if (status > 0)
+	if (status == 1)
 		write(1, "OK\n", 3);
-	else
+	else if (status == 0)
 		write(1, "KO\n", 3);
 	ft_free(data->stack_a);
 	ft_free(data->stack_b);
@@ -37,17 +37,37 @@ void	ft_status(int status, t_data *data)
 void	ft_free(t_stack *stack)
 {
 	if (stack && stack->next)
+	{
+		stack->next->previous = NULL;
 		ft_free(stack->next);
+	}
 	if (stack && stack->previous)
+	{
+		stack->previous->next = NULL;
 		ft_free(stack->previous);
-	free(stack);
+	}
+	if (stack)
+	{
+		free(stack);
+		stack = NULL;
+	}
 }
 
 void	ft_free2(t_command *command)
 {
 	if (command && command->next)
+	{
+		command->next->previous = NULL;
 		ft_free2(command->next);
+	}
 	if (command && command->previous)
+	{
+		command->previous->next = NULL;
 		ft_free2(command->previous);
-	free(command);
+	}
+	if (command)
+	{
+		free(command);
+		command = NULL;
+	}
 }

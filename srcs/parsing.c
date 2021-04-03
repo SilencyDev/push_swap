@@ -6,7 +6,7 @@
 /*   By: kmacquet <kmacquet@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 16:59:14 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/04/03 18:20:18 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/04/03 21:14:10 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,22 +27,25 @@ void		parsing_cmd(t_data *data)
 	{
 		i = -1;
 		ret = get_next_line(&line);
-		if (!data->command)
+		if (*line)
 		{
-			data->command = ft_lstnew2(NULL, NULL);
-			while (line[++i])
-				data->command->cmd[i] = line[i];
-			data->command->cmd[i] = 0;
-			ctmp = data->command;
-		}
-		else
-		{
-			tmp = data->command;
-			data->command = ft_lstnew2(NULL, data->command->previous);
-			tmp->next = data->command;
-			while (line[++i])
-				data->command->cmd[i] = line[i];
-			data->command->cmd[i] = 0;
+			if (!data->command)
+			{
+				data->command = ft_lstnew2(NULL, NULL);
+				while (line[++i])
+					data->command->cmd[i] = line[i];
+				data->command->cmd[i] = 0;
+				ctmp = data->command;
+			}
+			else
+			{
+				tmp = data->command;
+				data->command = ft_lstnew2(NULL, tmp);
+				tmp->next = data->command;
+				while (line[++i])
+					data->command->cmd[i] = line[i];
+				data->command->cmd[i] = 0;
+			}
 		}
 		free(line);
 	}
@@ -139,7 +142,7 @@ void	parsing_nb(t_data *data, char **av)
 		else
 		{
 			tmp = data->stack_a;
-			data->stack_a = ft_lstnew(NULL, data->stack_a->previous);
+			data->stack_a = ft_lstnew(NULL, tmp);
 			tmp->next = data->stack_a;
 			data->stack_a->i = ft_atoi(number[y]);
 		}
@@ -169,11 +172,12 @@ void	parsing_nb2(t_data *data, char **av, int ac)
 		else
 		{
 			tmp = data->stack_a;
-			data->stack_a = ft_lstnew(NULL, data->stack_a->previous);
+			data->stack_a = ft_lstnew(NULL, tmp);
 			tmp->next = data->stack_a;
 			data->stack_a->i = ft_atoi(av[y]);
 		}
 		y++;
 	}
+	data->y_max = y - 1;
 	data->stack_a = init;
 }

@@ -6,7 +6,7 @@
 #    By: kmacquet <kmacquet@student.42nice.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/30 13:54:50 by kmacquet          #+#    #+#              #
-#    Updated: 2021/04/03 16:17:59 by kmacquet         ###   ########.fr        #
+#    Updated: 2021/04/03 19:16:02 by kmacquet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,13 +16,13 @@ NAME1 = checker
 SRCS1 = srcs/checker.c srcs/swap.c srcs/push.c \
 		srcs/tobottom.c srcs/totop.c srcs/utils.c \
 		srcs/error.c srcs/libft.c srcs/get_next_line.c \
-		srcs/libft2.c srcs/parsing.c
+		srcs/libft2.c srcs/parsing.c srcs/algorithm.c
 OBJS1 = $(SRCS1:.c=.o)
 NAME2 = push_swap
 SRCS2 =	srcs/push_swap.c srcs/swap.c srcs/push.c \
 		srcs/tobottom.c srcs/totop.c srcs/utils.c \
 		srcs/error.c srcs/libft.c srcs/get_next_line.c \
-		srcs/libft2.c srcs/parsing.c
+		srcs/libft2.c srcs/parsing.c srcs/algorithm.c
 OBJS2 = $(SRCS2:.c=.o)
 RM = rm -rf
 
@@ -33,7 +33,7 @@ $(NAME1) : $(OBJS1)
 	$(CC) $(FLAGS) $(OBJS1) -o $(NAME1) -g -fsanitize=address
 
 $(NAME2) : $(OBJS2)
-	$(CC) $(FLAGS) $(OBJS2) -o $(NAME2) -g -fsanitize=address
+	$(CC) -g $(FLAGS) $(OBJS2) -o $(NAME2) -fsanitize=address
 
 clean :
 	$(RM) $(OBJS1)

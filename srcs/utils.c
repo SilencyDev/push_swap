@@ -6,7 +6,7 @@
 /*   By: kmacquet <kmacquet@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 11:08:55 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/04/01 19:34:33 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/04/03 19:27:36 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,43 @@ void	print_stack(t_data *data)
 	printf("------\n");
 	data->stack_a = a;
 	data->stack_b = b;
+}
+
+int	is_solved(t_data *data, int push_swap)
+{
+	t_stack	*init;
+
+	init = data->stack_a;
+	if (!data->stack_a)
+	{
+		if (push_swap)
+			return (0);
+		ft_status(0, data);
+	}
+	while (data->stack_a)
+	{
+		if ((data->stack_a->next
+			&& data->stack_a->i > data->stack_a->next->i)
+			|| data->stack_b)
+		{
+			data->stack_a = init;
+			if (push_swap)
+				return (0);
+			ft_status(0, data);
+		}
+		data->stack_a = data->stack_a->next;
+	}
+	data->stack_a = init;
+	if (push_swap)
+		return (1);
+	ft_status(1, data);
+}
+
+t_data	*init(t_data *data)
+{
+	data->stack_a = NULL;
+	data->stack_b = NULL;
+	data->command = NULL;
+	data->y_max = 0;
+	return (data);
 }

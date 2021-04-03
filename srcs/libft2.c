@@ -6,7 +6,7 @@
 /*   By: kmacquet <kmacquet@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 13:47:39 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/04/03 17:35:15 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/04/03 19:35:56 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ char		**ft_split_str(char *s, char *charset, t_data *data)
 	str = (char *)s;
 	if (!s)
 		return (NULL);
-	if (!(dest = malloc(sizeof(char *) * (data->y_max = ft_countword(str, charset) + 1))))
+	if (!(dest = malloc(sizeof(char *) * ((data->y_max = ft_countword(str, charset)) + 1))))
 		return (NULL);
 	while (*str)
 		if (!is_charset(*str, charset))
