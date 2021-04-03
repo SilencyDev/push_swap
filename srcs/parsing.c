@@ -6,7 +6,7 @@
 /*   By: kmacquet <kmacquet@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 16:59:14 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/04/03 17:38:09 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/04/03 18:20:18 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,5 +147,33 @@ void	parsing_nb(t_data *data, char **av)
 		y++;
 	}
 	free(number);
+	data->stack_a = init;
+}
+
+void	parsing_nb2(t_data *data, char **av, int ac)
+{
+	char	**number;
+	int		y;
+	t_stack	*tmp;
+	t_stack	*init;
+	
+	y = 1;
+	while (y < ac && av[y])
+	{
+		if (!data->stack_a)
+		{
+			data->stack_a = ft_lstnew(NULL, NULL);
+			init = data->stack_a;
+			init->i = ft_atoi(av[y]);
+		}
+		else
+		{
+			tmp = data->stack_a;
+			data->stack_a = ft_lstnew(NULL, data->stack_a->previous);
+			tmp->next = data->stack_a;
+			data->stack_a->i = ft_atoi(av[y]);
+		}
+		y++;
+	}
 	data->stack_a = init;
 }

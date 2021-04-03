@@ -6,7 +6,7 @@
 /*   By: kmacquet <kmacquet@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 16:31:02 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/04/03 17:41:57 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/04/03 18:20:23 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ struct			s_stack
 	t_stack		*previous;
 };
 
+void			parsing_nb2(t_data *data, char **av, int ac);
 void			ft_free2(t_command *command);
 void			ft_free(t_stack *data);
 void			check_cmd(t_data *data);
