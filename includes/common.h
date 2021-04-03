@@ -6,7 +6,7 @@
 /*   By: kmacquet <kmacquet@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 16:31:02 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/04/03 20:32:54 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/04/03 23:57:55 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct	s_command t_command;
 
 struct			s_data
 {
+	int			median;
 	int			y_max;
 	t_stack		*stack_a;
 	t_stack		*stack_b;
@@ -44,6 +45,8 @@ struct			s_stack
 	t_stack		*previous;
 };
 
+void			s_algo(t_data *data);
+void			xs_algo(t_data *data);
 void			xxs_algo(t_data *data);
 void			solving(t_data *data, int ac);
 void			parsing_nb2(t_data *data, char **av, int ac);

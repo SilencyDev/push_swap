@@ -6,7 +6,7 @@
 /*   By: kmacquet <kmacquet@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 14:30:01 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/04/03 21:04:46 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/04/03 22:37:41 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int ac, char **av)
 		parsing_cmd(&data);
 		if (!data.stack_a)
 			return (0);
-		print_stack(&data);
+		// print_stack(&data);
 		if (data.command)
 			check_cmd(&data);
 		is_solved(&data, 0);

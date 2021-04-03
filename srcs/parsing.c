@@ -6,7 +6,7 @@
 /*   By: kmacquet <kmacquet@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 16:59:14 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/04/03 21:14:10 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/04/03 22:46:17 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void		parsing_cmd(t_data *data)
 	{
 		i = -1;
 		ret = get_next_line(&line);
+		printf("%s\n", line);
 		if (*line)
 		{
 			if (!data->command)
