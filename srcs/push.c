@@ -6,7 +6,7 @@
 /*   By: kmacquet <kmacquet@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 17:23:22 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/04/03 17:31:23 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/04/04 23:29:43 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	pa(t_data *data)
 	}
 	else
 		data->stack_b = NULL;
-	ft_lstadd_front(&data->stack_a, stack);
+	ft_lstadd_front(data, stack);
 }
 
 void	pb(t_data *data)
@@ -43,5 +43,5 @@ void	pb(t_data *data)
 	}
 	else
 		data->stack_a = NULL;
-	ft_lstadd_front(&data->stack_b, stack);
+	ft_lstadd_frontb(data, stack);
 }

@@ -6,7 +6,7 @@
 /*   By: kmacquet <kmacquet@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 16:59:14 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/04/03 22:46:17 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/04/04 22:28:01 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void		parsing_cmd(t_data *data)
 	{
 		i = -1;
 		ret = get_next_line(&line);
-		printf("%s\n", line);
 		if (*line)
 		{
 			if (!data->command)
@@ -75,20 +74,6 @@ void	check_cmd(t_data *data)
 			else
 				ft_error("Wrong commands", data);
 		}
-		else if (data->command->cmd[0] && data->command->cmd[0] == 'r')
-		{
-			if (data->command->cmd[1] && data->command->cmd[1] == 'a'
-				&& !data->command->cmd[2])
-				ra(data);
-			else if (data->command->cmd[1] && data->command->cmd[1] == 'b'
-				&& !data->command->cmd[2])
-				rb(data);
-			else if (data->command->cmd[1] && data->command->cmd[1] == 'r'
-				&& !data->command->cmd[2])
-				rr(data);
-			else
-				ft_error("Wrong commands", data);
-		}
 		else if (data->command->cmd[0] && data->command->cmd[0] == 'r'
 				&& data->command->cmd[1] && data->command->cmd[1] == 'r')
 		{
@@ -101,6 +86,20 @@ void	check_cmd(t_data *data)
 			else if (data->command->cmd[2] && data->command->cmd[2] == 'r'
 				&& !data->command->cmd[3])
 				rrr(data);
+			else
+				ft_error("Wrong commands", data);
+		}
+		else if (data->command->cmd[0] && data->command->cmd[0] == 'r')
+		{
+			if (data->command->cmd[1] && data->command->cmd[1] == 'a'
+				&& !data->command->cmd[2])
+				ra(data);
+			else if (data->command->cmd[1] && data->command->cmd[1] == 'b'
+				&& !data->command->cmd[2])
+				rb(data);
+			else if (data->command->cmd[1] && data->command->cmd[1] == 'r'
+				&& !data->command->cmd[2])
+				rr(data);
 			else
 				ft_error("Wrong commands", data);
 		}

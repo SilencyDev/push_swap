@@ -3,19 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   libft.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kmacquet <kmacquet@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 13:45:16 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/04/02 14:37:53 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/04/04 23:30:56 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/common.h"
 
-void	ft_lstadd_front(t_stack **slst, t_stack *new)
+void	ft_lstadd_front(t_data *data, t_stack *new)
 {
-	new->next = *slst;
-	*slst = new;
+	if (data->stack_a)
+		data->stack_a->previous = new;
+	new->next = data->stack_a;
+	data->stack_a = new;
+}
+
+void	ft_lstadd_frontb(t_data *data, t_stack *new)
+{
+	if (data->stack_b)
+		data->stack_b->previous = new;
+	new->next = data->stack_b;
+	data->stack_b = new;
 }
 
 void	ft_lstadd_back(t_stack **alst, t_stack *new)

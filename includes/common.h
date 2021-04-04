@@ -6,7 +6,7 @@
 /*   By: kmacquet <kmacquet@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 16:31:02 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/04/03 23:57:55 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/04/04 23:23:13 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,8 @@ void			parsing_cmd(t_data *data);
 int				is_solved(t_data *data, int push_swap);
 void			ft_status(int status, t_data *data);
 void			print_stack(t_data *data);
-void			ft_lstadd_front(t_stack **slst, t_stack *new);
+void			ft_lstadd_front(t_data *data, t_stack *new);
+void			ft_lstadd_frontb(t_data *data, t_stack *new);
 void			ft_lstadd_back(t_stack **alst, t_stack *new);
 t_stack			*ft_lstlast(t_stack *lst);
 t_stack			*ft_lstfirst(t_stack *lst);
