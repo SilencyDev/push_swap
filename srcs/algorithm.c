@@ -6,12 +6,11 @@
 /*   By: kmacquet <kmacquet@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 18:40:07 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/04/04 23:48:34 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/04/27 16:13:52 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
-
+#include "../includes/common.h"
 
 void	xs_algo(t_data *data)
 {

@@ -6,7 +6,7 @@
 /*   By: kmacquet <kmacquet@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 11:03:14 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/04/03 22:23:03 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/04/27 17:52:22 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,12 @@ void	ft_error(char *s, t_data *data)
 {
 	write(1, "Error\n", 6);
 	write(1, s, ft_strlen(s));
-	ft_free(data->stack_a);
-	ft_free(data->stack_b);
-	ft_free2(data->command);
+	if (data)
+	{
+		ft_free(data->stack_a);
+		ft_free(data->stack_b);
+		ft_free2(data->command);
+	}
 	exit(1);
 }
 
@@ -28,9 +31,12 @@ void	ft_status(int status, t_data *data)
 		write(1, "OK\n", 3);
 	else if (status == 0)
 		write(1, "KO\n", 3);
-	ft_free(data->stack_a);
-	ft_free(data->stack_b);
-	ft_free2(data->command);
+	if (data)
+	{
+		ft_free(data->stack_a);
+		ft_free(data->stack_b);
+		ft_free2(data->command);
+	}
 	exit(0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: kmacquet <kmacquet@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 16:59:14 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/04/04 22:28:01 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/04/27 16:07:59 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,60 +60,26 @@ void	check_cmd(t_data *data)
 	init = data->command;
 	while (data->command)
 	{
-		if (data->command->cmd[0] && data->command->cmd[0] == 's')
-		{
-			if (data->command->cmd[1] && data->command->cmd[1] == 'a'
-				&& !data->command->cmd[2])
-				sa(data);
-			else if (data->command->cmd[1] && data->command->cmd[1] == 'b'
-				&& !data->command->cmd[2])
-				sb(data);
-			else if (data->command->cmd[1] && data->command->cmd[1] == 's'
-				&& !data->command->cmd[2])
-				ss(data);
-			else
-				ft_error("Wrong commands", data);
-		}
-		else if (data->command->cmd[0] && data->command->cmd[0] == 'r'
-				&& data->command->cmd[1] && data->command->cmd[1] == 'r')
-		{
-			if (data->command->cmd[2] && data->command->cmd[2] == 'a'
-				&& !data->command->cmd[3])
-				rra(data);
-			else if (data->command->cmd[2] && data->command->cmd[2] == 'b'
-				&& !data->command->cmd[3])
-				rrb(data);
-			else if (data->command->cmd[2] && data->command->cmd[2] == 'r'
-				&& !data->command->cmd[3])
-				rrr(data);
-			else
-				ft_error("Wrong commands", data);
-		}
-		else if (data->command->cmd[0] && data->command->cmd[0] == 'r')
-		{
-			if (data->command->cmd[1] && data->command->cmd[1] == 'a'
-				&& !data->command->cmd[2])
-				ra(data);
-			else if (data->command->cmd[1] && data->command->cmd[1] == 'b'
-				&& !data->command->cmd[2])
-				rb(data);
-			else if (data->command->cmd[1] && data->command->cmd[1] == 'r'
-				&& !data->command->cmd[2])
-				rr(data);
-			else
-				ft_error("Wrong commands", data);
-		}
-		else if (data->command->cmd[0] && data->command->cmd[0] == 'p')
-		{
-			if (data->command->cmd[1] && data->command->cmd[1] == 'a'
-				&& !data->command->cmd[2])
-				pa(data);
-			else if (data->command->cmd[1] && data->command->cmd[1] == 'b'
-				&& !data->command->cmd[2])
-				pb(data);
-			else
-				ft_error("Wrong commands", data);
-		}
+		if (!ft_strncmp(data->command->cmd, "sa", 3))
+			sa(data);
+		else if (!ft_strncmp(data->command->cmd, "sb", 3))
+			sb(data);
+		else if (!ft_strncmp(data->command->cmd, "rra", 4))
+			rra(data);
+		else if (!ft_strncmp(data->command->cmd, "rrb", 4))
+			rrb(data);
+		else if (!ft_strncmp(data->command->cmd, "rrr", 4))
+			rrr(data);
+		else if (!ft_strncmp(data->command->cmd, "ra", 3))
+			ra(data);
+		else if (!ft_strncmp(data->command->cmd, "rb", 3))
+			rb(data);
+		else if (!ft_strncmp(data->command->cmd, "rr", 3))
+			rr(data);
+		else if (!ft_strncmp(data->command->cmd, "pa", 3))
+			pa(data);
+		else if (!ft_strncmp(data->command->cmd, "pb", 3))
+			pb(data);
 		else
 			ft_error("Wrong commands", data);
 		print_stack(data);

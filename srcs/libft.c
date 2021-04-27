@@ -6,7 +6,7 @@
 /*   By: kmacquet <kmacquet@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 13:45:16 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/04/04 23:30:56 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/04/27 16:09:24 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,24 @@ t_command	*ft_lstnew2(t_command *next, t_command *previous)
 	list->next = next;
 	list->previous = previous;
 	return (list);
+}
+
+int		ft_strncmp(const char *s1, const char *s2, size_t n)
+{
+	unsigned int	i;
+	unsigned char	*c1;
+	unsigned char	*c2;
+
+	c1 = (unsigned char *)s1;
+	c2 = (unsigned char *)s2;
+	i = 0;
+	while ((c1[i] || c2[i]) && i < n)
+	{
+		if (c1[i] < c2[i])
+			return (-1);
+		if (c1[i] > c2[i])
+			return (1);
+		i++;
+	}
+	return (0);
 }

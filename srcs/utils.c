@@ -6,7 +6,7 @@
 /*   By: kmacquet <kmacquet@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 11:08:55 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/04/03 23:58:14 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/04/27 16:41:29 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ t_data	*init(t_data *data)
 	data->stack_b = NULL;
 	data->command = NULL;
 	data->median = 0;
+	data->pivot = 0;
 	data->y_max = 0;
 	return (data);
 }

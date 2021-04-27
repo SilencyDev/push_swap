@@ -6,7 +6,7 @@
 /*   By: kmacquet <kmacquet@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 16:31:02 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/04/04 23:23:13 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/04/27 16:41:02 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct	s_command t_command;
 struct			s_data
 {
 	int			median;
+	int			pivot;
 	int			y_max;
 	t_stack		*stack_a;
 	t_stack		*stack_b;
@@ -85,5 +86,6 @@ void			rr(t_data *data);
 void			rra(t_data *stack_a);
 void			rrb(t_data *stack_b);
 void			rrr(t_data *d);
+int				ft_strncmp(const char *s1, const char *s2, size_t n);
 
 #endif
