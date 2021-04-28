@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kmacquet <kmacquet@student.42nice.fr>      +#+  +:+       +#+         #
+#    By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/30 13:54:50 by kmacquet          #+#    #+#              #
-#    Updated: 2021/04/03 19:16:02 by kmacquet         ###   ########.fr        #
+#    Updated: 2021/04/28 10:10:23 by kmacquet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ $(NAME1) : $(OBJS1)
 	$(CC) $(FLAGS) $(OBJS1) -o $(NAME1) -g -fsanitize=address
 
 $(NAME2) : $(OBJS2)
-	$(CC) -g $(FLAGS) $(OBJS2) -o $(NAME2) -fsanitize=address
+	$(CC) $(FLAGS) $(OBJS2) -o $(NAME2) -g -fsanitize=address
 
 clean :
 	$(RM) $(OBJS1)

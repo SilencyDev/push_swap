@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmacquet <kmacquet@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 11:08:55 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/04/27 16:41:29 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/04/28 11:25:43 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,17 +48,13 @@ void	print_stack(t_data *data)
 	data->stack_b = b;
 }
 
-int	is_solved(t_data *data, int push_swap)
+void	is_solved(t_data *data, int push_swap)
 {
 	t_stack	*init;
 
 	init = data->stack_a;
 	if (!data->stack_a)
-	{
-		if (push_swap)
-			return (0);
 		ft_status(0, data);
-	}
 	while (data->stack_a)
 	{
 		if ((data->stack_a->next
@@ -66,16 +62,34 @@ int	is_solved(t_data *data, int push_swap)
 			|| data->stack_b)
 		{
 			data->stack_a = init;
-			if (push_swap)
-				return (0);
 			ft_status(0, data);
 		}
 		data->stack_a = data->stack_a->next;
 	}
 	data->stack_a = init;
-	if (push_swap)
-		return (1);
 	ft_status(1, data);
+}
+
+int	is_solved2(t_data *data, int push_swap)
+{
+	t_stack	*init;
+
+	init = data->stack_a;
+	if (!data->stack_a)
+		return (0);
+	while (data->stack_a)
+	{
+		if ((data->stack_a->next
+			&& data->stack_a->i > data->stack_a->next->i)
+			|| data->stack_b)
+		{
+			data->stack_a = init;
+			return (0);
+		}
+		data->stack_a = data->stack_a->next;
+	}
+	data->stack_a = init;
+	return (1);
 }
 
 t_data	*init(t_data *data)
@@ -83,7 +97,6 @@ t_data	*init(t_data *data)
 	data->stack_a = NULL;
 	data->stack_b = NULL;
 	data->command = NULL;
-	data->median = 0;
 	data->pivot = 0;
 	data->y_max = 0;
 	return (data);

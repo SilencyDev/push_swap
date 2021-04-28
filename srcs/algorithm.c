@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algorithm.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmacquet <kmacquet@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 18:40:07 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/04/27 16:13:52 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/04/28 12:05:33 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,33 +93,30 @@ void	xxs_ralgo(t_data *data)
 
 void	s_algo(t_data *data)
 {
-	write(1, "pb\n", 3);
-	pb(data);
-	write(1, "pb\n", 3);
-	pb(data);
-	xxs_algo(data);
-	write(1, "pb\n", 3);
-	pb(data);
-	// print_stack(data);
-	xs_ralgob(data);
-	print_stack(data);
-	write(1, "pa\n", 3);
-	pa(data);
-	write(1, "pa\n", 3);
-	pa(data);
-	write(1, "pa\n", 3);
-	pa(data);
+	t_stack	*init_a;
+	t_stack	*init_b;
 
-	print_stack(data);
-	if (data->stack_a->i)
-		while (data->stack_a->next)
+	init_a = data->stack_a;
+	while (data->stack_a)
+	{
+		if (data->stack_a->i >= data->pivot)
 		{
-			printf("i[%d] n[%p] p[%p]\n", data->stack_a->i ,data->stack_a->next, data->stack_a->previous);
-			data->stack_a = data->stack_a->next;
+			pb(data);
+			init_a = data->stack_a;
 		}
-	printf("i[%d] n[%p] p[%p]\n", data->stack_a->i ,data->stack_a->next, data->stack_a->previous);
-	write(1, "rra\n", 4);
-	rra(data);
+		else
+			data->stack_a = data->stack_a->next;
+	}
+	data->stack_a = init_a;
+	print_stack(data);
+	exit(0);
+	// if (data->stack_a->i)
+	// 	while (data->stack_a->next)
+	// 	{
+	// 		printf("i[%d] n[%p] p[%p]\n", data->stack_a->i ,data->stack_a->next, data->stack_a->previous);
+	// 		data->stack_a = data->stack_a->next;
+	// 	}
+	// printf("i[%d] n[%p] p[%p]\n", data->stack_a->i ,data->stack_a->next, data->stack_a->previous);
 	// pb(data);
 	// write(1, "pb\n", 3);
 	// xs_algo(data);

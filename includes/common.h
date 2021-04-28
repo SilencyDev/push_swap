@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   common.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmacquet <kmacquet@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 16:31:02 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/04/27 16:41:02 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/04/28 11:25:32 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ typedef struct	s_command t_command;
 
 struct			s_data
 {
-	int			median;
 	int			pivot;
 	int			y_max;
 	t_stack		*stack_a;
@@ -64,7 +63,8 @@ void			ft_strcpy(char *start, char *str, char *dest);
 int				ft_countword(char *str, char *charset);
 int				get_next_line(char **line);
 void			parsing_cmd(t_data *data);
-int				is_solved(t_data *data, int push_swap);
+void			is_solved(t_data *data, int push_swap);
+int				is_solved2(t_data *data, int push_swap);
 void			ft_status(int status, t_data *data);
 void			print_stack(t_data *data);
 void			ft_lstadd_front(t_data *data, t_stack *new);
