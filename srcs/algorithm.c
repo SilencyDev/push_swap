@@ -6,7 +6,7 @@
 /*   By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 18:40:07 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/04/28 12:05:33 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/04/28 18:40:11 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,15 @@
 void	xs_algo(t_data *data)
 {
 	if (data->stack_a->next->next->i < data->stack_a->i
+		&& data->stack_a->next->next->i < data->stack_a->next->i
+		&& data->stack_a->i > data->stack_a->next->i)
+	{
+		write(1, "sa\n", 3);
+		sa(data);
+		write(1, "rra\n", 4);
+		rra(data);
+	}
+	else if (data->stack_a->next->next->i < data->stack_a->i
 		&& data->stack_a->next->next->i < data->stack_a->next->i)
 	{
 		write(1, "rra\n", 4);
@@ -37,6 +46,15 @@ void	xs_algo(t_data *data)
 void	xs_ralgob(t_data *data)
 {
 	if (data->stack_b->next->next->i > data->stack_b->i
+		&& data->stack_b->next->next->i > data->stack_b->next->i
+		&& data->stack_b->i < data->stack_b->next->i)
+	{
+		write(1, "sb\n", 3);
+		sb(data);
+		write(1, "rrb\n", 4);
+		rrb(data);
+	}
+	else if (data->stack_b->next->next->i > data->stack_b->i
 		&& data->stack_b->next->next->i > data->stack_b->next->i)
 	{
 		write(1, "rrb\n", 4);
@@ -70,6 +88,13 @@ void	xxs_ralgo(t_data *data)
 	// print_stack(data);
 }
 
+void	xxs_ralgob(t_data *data)
+{
+	if (data->stack_a->i > data->stack_a->next->i && write(1, "sb\n", 3))
+		sb(data);
+	// print_stack(data);
+}
+
 // int		smallest(int i, t_stack *stack)
 // {
 // 	t_stack	*init;
@@ -91,23 +116,60 @@ void	xxs_ralgo(t_data *data)
 // 	return (0);
 // }
 
+
 void	s_algo(t_data *data)
 {
-	t_stack	*init_a;
-	t_stack	*init_b;
+	int	i;
+	int	group;
 
-	init_a = data->stack_a;
-	while (data->stack_a)
+	group = 1;
+	i = data->y_max;
+	print_stack(data);
+	while (data->stack_a && data->y_max > 2)
 	{
-		if (data->stack_a->i >= data->pivot)
+		while (i-- > 2 && data->stack_a)
 		{
-			pb(data);
-			init_a = data->stack_a;
+			if (data->stack_a->i <= data->pivot)
+			{
+				pb(data);
+				data->stack_b->group = group;
+			}
+			else
+				ra(data);
+			print_stack(data);
 		}
-		else
-			data->stack_a = data->stack_a->next;
+		group++;
+		new_pivot(data, 'a');
+		i = data->y_max;
+		printf("[%d]\n", data->pivot);
+		print_stack(data);
 	}
-	data->stack_a = init_a;
+	xxs_algo(data);
+	print_stack(data);
+	new_pivot(data, 'b');
+	i = data->y_max;
+	while (data->stack_b && data->y_max > 2)
+	{
+		while (i-- > 2 && data->stack_b)
+		{
+			if (data->stack_b->i >= data->pivot)
+			{
+				pa(data);
+				data->stack_a->group = group;
+			}
+			else
+				rb(data);
+			// print_stack(data);
+		}
+		group++;
+		new_pivot(data, 'b');
+		i = data->y_max;
+		printf("[%d]\n", data->pivot);
+		print_stack(data);
+	}
+	xxs_ralgob(data);
+	pa(data);
+	pa(data);
 	print_stack(data);
 	exit(0);
 	// if (data->stack_a->i)

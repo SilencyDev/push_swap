@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmacquet <kmacquet@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 16:59:14 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/04/27 16:07:59 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/04/28 13:21:12 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ void	parsing_nb(t_data *data, char **av)
 			tmp->next = data->stack_a;
 			data->stack_a->i = ft_atoi(number[y]);
 		}
+		data->stack_a->group = 0;
 		free(number[y]);
 		y++;
 	}
@@ -142,6 +143,7 @@ void	parsing_nb2(t_data *data, char **av, int ac)
 			tmp->next = data->stack_a;
 			data->stack_a->i = ft_atoi(av[y]);
 		}
+		data->stack_a->group = 0;
 		y++;
 	}
 	data->y_max = y - 1;

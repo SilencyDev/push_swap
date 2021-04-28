@@ -6,12 +6,12 @@
 /*   By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 16:31:02 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/04/28 11:25:32 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/04/28 16:31:23 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCT_H
-# define STRUCT_H
+#ifndef COMMON_H
+# define COMMON_H
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
@@ -41,6 +41,7 @@ struct			s_command
 struct			s_stack
 {
 	int			i;
+	int			group;
 	t_stack		*next;
 	t_stack		*previous;
 };
@@ -87,5 +88,7 @@ void			rra(t_data *stack_a);
 void			rrb(t_data *stack_b);
 void			rrr(t_data *d);
 int				ft_strncmp(const char *s1, const char *s2, size_t n);
+void			presort_tab(int *av, t_data *data);
+void			new_pivot(t_data *data, char c);
 
 #endif
