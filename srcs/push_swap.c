@@ -6,7 +6,7 @@
 /*   By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 14:30:21 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/04/28 16:43:45 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/04/29 14:57:51 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int	main(int ac, char **av)
 			parsing_nb2(&data, av, ac);
 		if (!data.stack_a)
 			return (0);
-		new_pivot(&data, 'a');
 		print_stack(&data);
 		while (!is_solved2(&data, 1))
 			solving(&data, ac);

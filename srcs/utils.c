@@ -6,7 +6,7 @@
 /*   By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 11:08:55 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/04/28 18:45:01 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/04/29 18:27:02 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,39 +138,47 @@ void	presort_tab(int *av, t_data *data)
 		presort_tab(av, data);
 }
 
-void	new_pivot(t_data *data, char c)
+int		count_stack(t_stack *stack)
 {
 	int	i;
-	int	tab[data->y_max];
+
+	i = 0;
+	while (stack)
+	{
+		stack = stack->next;
+		i++;
+	}
+	return (i);
+}
+
+void	new_pivot(t_data *data, char c, int size)
+{
+	int	i;
+	int	tab[size];
 	t_stack	*init;
 	t_stack *stack;
 
 	i = 0;
 	if (c == 'a')
-	{
-		init = data->stack_a;
 		stack = data->stack_a;
-	}
 	else
-	{
-		init = data->stack_b;
 		stack = data->stack_b;
-	}
+	print_stack(data);
 	while (stack)
 	{
-		if (stack->group == 3)
-			printf("TEEEEEESSSSSSSTTTTT\n");
 		tab[i] = stack->i;
 		stack = stack->next;
 		i++;
 	}
 	data->y_max = i;
-	stack = init;
 	presort_tab(tab, data);
 	i = 0;
-	printf("{--%d--}\n", data->y_max);
+	printf("[y-max] [%d]\n", data->y_max);
 	while (i < data->y_max && tab[i])
-		printf("--%d--\n", tab[i++]);
+	{
+		printf("[nb   ] [%d] [%d]\n", tab[i], i);
+		i++;
+	}
 	data->pivot = tab[(int)(data->y_max / 2)];
-	printf("{-{-}%d{-}-}\n", tab[(int)(data->y_max / 2)]);
+	printf("[pivot] [%d]\n", data->pivot);
 }

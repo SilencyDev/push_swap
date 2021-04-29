@@ -6,7 +6,7 @@
 /*   By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 18:40:07 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/04/28 18:40:11 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/04/29 18:40:48 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	xxs_ralgo(t_data *data)
 
 void	xxs_ralgob(t_data *data)
 {
-	if (data->stack_a->i > data->stack_a->next->i && write(1, "sb\n", 3))
+	if (data->stack_b->i < data->stack_b->next->i && write(1, "sb\n", 3))
 		sb(data);
 	// print_stack(data);
 }
@@ -120,9 +120,9 @@ void	xxs_ralgob(t_data *data)
 void	s_algo(t_data *data)
 {
 	int	i;
-	int	group;
+	static int	group = 1;
 
-	group = 1;
+	new_pivot(data, 'a', count_stack(data->stack_a));
 	i = data->y_max;
 	print_stack(data);
 	while (data->stack_a && data->y_max > 2)
@@ -136,17 +136,15 @@ void	s_algo(t_data *data)
 			}
 			else
 				ra(data);
-			print_stack(data);
 		}
 		group++;
-		new_pivot(data, 'a');
+		new_pivot(data, 'a', count_stack(data->stack_a));
 		i = data->y_max;
-		printf("[%d]\n", data->pivot);
 		print_stack(data);
 	}
 	xxs_algo(data);
 	print_stack(data);
-	new_pivot(data, 'b');
+	new_pivot(data, 'b', count_stack(data->stack_b));
 	i = data->y_max;
 	while (data->stack_b && data->y_max > 2)
 	{
@@ -159,12 +157,10 @@ void	s_algo(t_data *data)
 			}
 			else
 				rb(data);
-			// print_stack(data);
 		}
 		group++;
-		new_pivot(data, 'b');
+		new_pivot(data, 'b', count_stack(data->stack_b));
 		i = data->y_max;
-		printf("[%d]\n", data->pivot);
 		print_stack(data);
 	}
 	xxs_ralgob(data);
