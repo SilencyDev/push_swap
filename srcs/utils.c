@@ -6,7 +6,7 @@
 /*   By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 11:08:55 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/04/29 18:27:02 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/04/30 17:44:42 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,8 @@ t_data	*init(t_data *data)
 	data->stack_a = NULL;
 	data->stack_b = NULL;
 	data->command = NULL;
+	data->current_group = 0;
+	data->next_group = 0;
 	data->pivot = 0;
 	data->y_max = 0;
 	return (data);
@@ -144,6 +146,19 @@ int		count_stack(t_stack *stack)
 
 	i = 0;
 	while (stack)
+	{
+		stack = stack->next;
+		i++;
+	}
+	return (i);
+}
+
+int		count_group(t_stack *stack, int group)
+{
+	int	i;
+
+	i = 0;
+	while (stack && stack->group == group)
 	{
 		stack = stack->next;
 		i++;

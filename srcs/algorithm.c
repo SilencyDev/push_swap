@@ -6,7 +6,7 @@
 /*   By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 18:40:07 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/04/29 18:40:48 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/04/30 17:44:15 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,45 +123,55 @@ void	s_algo(t_data *data)
 	static int	group = 1;
 
 	new_pivot(data, 'a', count_stack(data->stack_a));
-	i = data->y_max;
 	print_stack(data);
 	while (data->stack_a && data->y_max > 2)
 	{
-		while (i-- > 2 && data->stack_a)
+		while (data->stack_a && count_stack(data->stack_a) > 2 && data->y_max > 0)
 		{
+			if (count_stack(data->stack_a) == 3)
+				xs_algo(data);
 			if (data->stack_a->i <= data->pivot)
 			{
 				pb(data);
 				data->stack_b->group = group;
+				print_stack(data);
 			}
 			else
+			{
 				ra(data);
+				print_stack(data);
+			}
+			data->y_max--;
 		}
-		group++;
+		data->current_group = group++;
+		data->next_group = group;
 		new_pivot(data, 'a', count_stack(data->stack_a));
-		i = data->y_max;
-		print_stack(data);
 	}
 	xxs_algo(data);
 	print_stack(data);
 	new_pivot(data, 'b', count_stack(data->stack_b));
-	i = data->y_max;
 	while (data->stack_b && data->y_max > 2)
 	{
-		while (i-- > 2 && data->stack_b)
+		while (data->stack_b && count_stack(data->stack_b) > 2 && data->y_max > 0)
 		{
+			printf("[y-max] [%d], [stack] [%d]\n", data->y_max, count_stack(data->stack_b));
+			if (count_stack(data->stack_b) == 3)
+				xs_ralgob(data);
 			if (data->stack_b->i >= data->pivot)
 			{
 				pa(data);
 				data->stack_a->group = group;
+				print_stack(data);
 			}
 			else
+			{
 				rb(data);
+				print_stack(data);
+			}
+			data->y_max--;
 		}
 		group++;
 		new_pivot(data, 'b', count_stack(data->stack_b));
-		i = data->y_max;
-		print_stack(data);
 	}
 	xxs_ralgob(data);
 	pa(data);

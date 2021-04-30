@@ -6,7 +6,7 @@
 /*   By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 16:31:02 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/04/29 18:26:42 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/04/30 17:44:24 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ typedef struct	s_command t_command;
 
 struct			s_data
 {
+	int			current_group;
+	int			next_group;
 	int			pivot;
 	int			y_max;
 	t_stack		*stack_a;
@@ -46,6 +48,7 @@ struct			s_stack
 	t_stack		*previous;
 };
 
+int				count_group(t_stack *stack, int group);
 int				count_stack(t_stack *stack);
 void			s_algo(t_data *data);
 void			xs_algo(t_data *data);
