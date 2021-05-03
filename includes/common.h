@@ -6,7 +6,7 @@
 /*   By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 16:31:02 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/04/30 17:44:24 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/05/03 16:13:46 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@ struct			s_data
 	int			next_group;
 	int			pivot;
 	int			y_max;
+	int			a_size;
+	int			b_size;
+	int			group_size;
 	t_stack		*stack_a;
 	t_stack		*stack_b;
 	t_command 	*command;
@@ -48,7 +51,8 @@ struct			s_stack
 	t_stack		*previous;
 };
 
-int				count_group(t_stack *stack, int group);
+int			pre_solved(t_data *data);
+int				count_group(t_stack *stack);
 int				count_stack(t_stack *stack);
 void			s_algo(t_data *data);
 void			xs_algo(t_data *data);
@@ -68,8 +72,8 @@ void			ft_strcpy(char *start, char *str, char *dest);
 int				ft_countword(char *str, char *charset);
 int				get_next_line(char **line);
 void			parsing_cmd(t_data *data);
-void			is_solved(t_data *data, int push_swap);
-int				is_solved2(t_data *data, int push_swap);
+void			is_solved(t_data *data);
+int				is_solved2(t_data *data);
 void			ft_status(int status, t_data *data);
 void			print_stack(t_data *data);
 void			ft_lstadd_front(t_data *data, t_stack *new);

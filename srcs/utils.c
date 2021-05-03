@@ -6,7 +6,7 @@
 /*   By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 11:08:55 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/04/30 17:44:42 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/05/03 16:58:44 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,28 @@ void	print_stack(t_data *data)
 	data->stack_b = b;
 }
 
-void	is_solved(t_data *data, int push_swap)
+int	pre_solved(t_data *data)
+{
+	t_stack	*init;
+
+	init = data->stack_a;
+	if (!data->stack_a)
+		return (0);
+	while (data->stack_a)
+	{
+		if ((data->stack_a->next
+			&& data->stack_a->i > data->stack_a->next->i))
+		{
+			data->stack_a = init;
+			return (0);
+		}
+		data->stack_a = data->stack_a->next;
+	}
+	data->stack_a = init;
+	return (1);	
+}
+
+void	is_solved(t_data *data)
 {
 	t_stack	*init;
 
@@ -71,7 +92,7 @@ void	is_solved(t_data *data, int push_swap)
 	ft_status(1, data);
 }
 
-int	is_solved2(t_data *data, int push_swap)
+int	is_solved2(t_data *data)
 {
 	t_stack	*init;
 
@@ -98,6 +119,9 @@ t_data	*init(t_data *data)
 	data->stack_a = NULL;
 	data->stack_b = NULL;
 	data->command = NULL;
+	data->a_size = 0;
+	data->b_size = 0;
+	data->group_size = 0;
 	data->current_group = 0;
 	data->next_group = 0;
 	data->pivot = 0;
@@ -153,11 +177,13 @@ int		count_stack(t_stack *stack)
 	return (i);
 }
 
-int		count_group(t_stack *stack, int group)
+int		count_group(t_stack *stack)
 {
 	int	i;
+	int	group;
 
 	i = 0;
+	group = stack->group;
 	while (stack && stack->group == group)
 	{
 		stack = stack->next;
@@ -175,25 +201,26 @@ void	new_pivot(t_data *data, char c, int size)
 
 	i = 0;
 	if (c == 'a')
+	{
 		stack = data->stack_a;
+		data->a_size = count_stack(stack);
+	}
 	else
+	{
 		stack = data->stack_b;
+		data->b_size = count_stack(stack);
+	}
+	data->y_max = count_stack(stack);
+	data->group_size = count_group(stack);
 	print_stack(data);
-	while (stack)
+	while (stack && size--)
 	{
 		tab[i] = stack->i;
 		stack = stack->next;
 		i++;
 	}
-	data->y_max = i;
 	presort_tab(tab, data);
 	i = 0;
-	printf("[y-max] [%d]\n", data->y_max);
-	while (i < data->y_max && tab[i])
-	{
-		printf("[nb   ] [%d] [%d]\n", tab[i], i);
-		i++;
-	}
-	data->pivot = tab[(int)(data->y_max / 2)];
-	printf("[pivot] [%d]\n", data->pivot);
+	data->pivot = tab[(int)(data->group_size / 2)];
+	printf("[%d]\n", data->pivot);
 }

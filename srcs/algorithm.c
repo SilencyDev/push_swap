@@ -6,7 +6,7 @@
 /*   By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 18:40:07 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/04/30 17:44:15 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/05/03 16:59:07 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,11 +124,11 @@ void	s_algo(t_data *data)
 
 	new_pivot(data, 'a', count_stack(data->stack_a));
 	print_stack(data);
-	while (data->stack_a && data->y_max > 2)
+	while (data->stack_a && data->a_size > 2)
 	{
-		while (data->stack_a && count_stack(data->stack_a) > 2 && data->y_max > 0)
+		while (data->stack_a && data->a_size > 2)
 		{
-			if (count_stack(data->stack_a) == 3)
+			if (count_group(data->stack_a) == 3)
 				xs_algo(data);
 			if (data->stack_a->i <= data->pivot)
 			{
@@ -141,61 +141,39 @@ void	s_algo(t_data *data)
 				ra(data);
 				print_stack(data);
 			}
-			data->y_max--;
+			data->a_size--;
 		}
 		data->current_group = group++;
 		data->next_group = group;
-		new_pivot(data, 'a', count_stack(data->stack_a));
+		new_pivot(data, 'a', count_group(data->stack_a));
 	}
-	xxs_algo(data);
-	print_stack(data);
-	new_pivot(data, 'b', count_stack(data->stack_b));
-	while (data->stack_b && data->y_max > 2)
-	{
-		while (data->stack_b && count_stack(data->stack_b) > 2 && data->y_max > 0)
-		{
-			printf("[y-max] [%d], [stack] [%d]\n", data->y_max, count_stack(data->stack_b));
-			if (count_stack(data->stack_b) == 3)
-				xs_ralgob(data);
-			if (data->stack_b->i >= data->pivot)
-			{
-				pa(data);
-				data->stack_a->group = group;
-				print_stack(data);
-			}
-			else
-			{
-				rb(data);
-				print_stack(data);
-			}
-			data->y_max--;
-		}
-		group++;
-		new_pivot(data, 'b', count_stack(data->stack_b));
-	}
-	xxs_ralgob(data);
-	pa(data);
-	pa(data);
-	print_stack(data);
-	exit(0);
-	// if (data->stack_a->i)
-	// 	while (data->stack_a->next)
-	// 	{
-	// 		printf("i[%d] n[%p] p[%p]\n", data->stack_a->i ,data->stack_a->next, data->stack_a->previous);
-	// 		data->stack_a = data->stack_a->next;
-	// 	}
-	// printf("i[%d] n[%p] p[%p]\n", data->stack_a->i ,data->stack_a->next, data->stack_a->previous);
-	// pb(data);
-	// write(1, "pb\n", 3);
-	// xs_algo(data);
-	// pa(data);
-	// write(1, "pa\n", 3);
-	// if (data->stack_a->i > data->stack_a->next->i && write(1, "ra\n", 3))
+	// while (!is_solved2(data))
 	// {
-	// 	ra(data);
+	// 	if (pre_solved(data))
+	// 	{
+	// 		new_pivot(data, 'b', count_stack(data->stack_b));
+	// 		while (data->stack_b && count_group(data->stack_b) > 1)
+	// 		{
+	// 			if (count_group(data->stack_b) == 2)
+	// 				xxs_ralgob(data);
+	// 			if (data->stack_b->i >= data->pivot)
+	// 			{
+	// 				pa(data);
+	// 				data->stack_b->group = group;
+	// 			}
+	// 			else
+	// 			{
+	// 				rb(data);
+	// 			}
+
+	// 		}
+	// 	}
+	// 	else
+	// 	{
+
+	// 	}
 	// }
-	// pa(data);
-	// write(1, "pa\n", 3);
+	exit(0);
 }
 
 void	solving(t_data *data, int ac)

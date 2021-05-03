@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmacquet <kmacquet@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 14:30:01 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/04/27 17:47:20 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/05/03 14:17:08 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	main(int ac, char **av)
 		print_stack(&data);
 		if (data.command)
 			check_cmd(&data);
-		is_solved(&data, 0);
+		is_solved(&data);
 	}
 	return (0);
 }
