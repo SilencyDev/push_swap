@@ -6,7 +6,7 @@
 /*   By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 18:40:07 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/05/03 16:59:07 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/05/05 17:00:45 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,58 +121,103 @@ void	s_algo(t_data *data)
 {
 	int	i;
 	static int	group = 1;
+	int	nb_left;
+	int	nb_next;
 
+	nb_next = 0;
 	new_pivot(data, 'a', count_stack(data->stack_a));
 	print_stack(data);
 	while (data->stack_a && data->a_size > 2)
 	{
 		while (data->stack_a && data->a_size > 2)
 		{
-			if (count_group(data->stack_a) == 3)
+			if (count_stack(data->stack_a) == 3)
 				xs_algo(data);
 			if (data->stack_a->i <= data->pivot)
 			{
 				pb(data);
 				data->stack_b->group = group;
-				print_stack(data);
 			}
 			else
-			{
 				ra(data);
-				print_stack(data);
-			}
+			print_stack(data);
 			data->a_size--;
 		}
 		data->current_group = group++;
 		data->next_group = group;
-		new_pivot(data, 'a', count_group(data->stack_a));
+		new_pivot(data, 'a', count_stack(data->stack_a));
+		printf("[PIVOT %d]\n", data->pivot);
 	}
-	// while (!is_solved2(data))
-	// {
-	// 	if (pre_solved(data))
-	// 	{
-	// 		new_pivot(data, 'b', count_stack(data->stack_b));
-	// 		while (data->stack_b && count_group(data->stack_b) > 1)
-	// 		{
-	// 			if (count_group(data->stack_b) == 2)
-	// 				xxs_ralgob(data);
-	// 			if (data->stack_b->i >= data->pivot)
-	// 			{
-	// 				pa(data);
-	// 				data->stack_b->group = group;
-	// 			}
-	// 			else
-	// 			{
-	// 				rb(data);
-	// 			}
+	while (!is_solved2(data))
+	{
+		if (pre_solved(data))
+		{
+			new_pivot(data, 'b', count_group(data->stack_b));
+			nb_left = count_group(data->stack_b);
+			while (data->stack_b && nb_left)
+			{
+				printf("test1 :  [group:%d] [nb_left:%d] \
+				[nb_next:%d] [pivot:%d]\n", group, nb_left, nb_next, data->pivot);
+				if (nb_left == 1)
+				{
+					pa(data);
+					data->stack_a->group = group;
+					data->current_group = group++;
+					break ;
+				}
+				else if (nb_left == 2)
+				{
+					pa(data);
+					data->stack_a->group = group;
+					pa(data);
+					data->stack_a->group = group;
+					data->current_group = group++;
+					data->next_group = group;
+					break ;
+				}
+				else if (data->stack_b->i >= data->pivot)
+				{
+					pa(data);
+					data->stack_a->group = group;
+				}
+				else
+				{
+					rb(data);
+					nb_next++;
+				}
+				// if (group == 6)
+				// 	exit(0);
 
-	// 		}
-	// 	}
-	// 	else
-	// 	{
-
-	// 	}
-	// }
+				nb_left--;
+				// while (nb_left == 0 && nb_next > 0)
+				// {
+				// 	rrb(data);
+				// 	nb_next--;
+				// }
+			}
+			data->current_group = group++;
+			data->next_group = group;
+		}
+		// if (group == 6)
+		// 	exit(0);
+		if (!pre_solved(data))
+		{
+			new_pivot(data, 'a', count_group(data->stack_a));
+			nb_left = count_group(data->stack_a);
+			while (data->stack_a && nb_left >= 1)
+			{
+				printf("test2 :  [nb_left:%d]\n", nb_left);
+				pb(data);
+				data->stack_b->group = group;
+				nb_left--;
+			}
+			data->current_group = group++;
+			data->next_group = group;
+		}
+		xxs_algo(data);
+		// if (group == 6)
+		// 	exit(0);
+	}
 	exit(0);
 }
 
