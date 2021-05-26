@@ -6,7 +6,7 @@
 /*   By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 11:08:55 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/05/03 16:58:44 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/05/26 19:29:19 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,16 +203,16 @@ void	new_pivot(t_data *data, char c, int size)
 	if (c == 'a')
 	{
 		stack = data->stack_a;
-		data->a_size = count_stack(stack);
+		data->a_size = count_group(stack);
 	}
 	else
 	{
 		stack = data->stack_b;
-		data->b_size = count_stack(stack);
+		data->b_size = count_group(stack);
 	}
-	data->y_max = count_stack(stack);
+	data->y_max = count_group(stack);
 	data->group_size = count_group(stack);
-	print_stack(data);
+	// print_stack(data);
 	while (stack && size--)
 	{
 		tab[i] = stack->i;
@@ -222,5 +222,5 @@ void	new_pivot(t_data *data, char c, int size)
 	presort_tab(tab, data);
 	i = 0;
 	data->pivot = tab[(int)(data->group_size / 2)];
-	printf("[%d]\n", data->pivot);
+	// printf("[pivot:%d]\n", data->pivot);
 }
