@@ -6,7 +6,7 @@
 /*   By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 16:59:14 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/04/28 13:21:12 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/05/27 14:53:15 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void		parsing_cmd(t_data *data)
 		ret = get_next_line(&line);
 		if (*line)
 		{
+			check_cmd(data, line);
 			if (!data->command)
 			{
 				data->command = ft_lstnew2(NULL, NULL);
@@ -53,39 +54,30 @@ void		parsing_cmd(t_data *data)
 		data->command = ctmp;
 }
 
-void	check_cmd(t_data *data)
+void	check_cmd(t_data *data, char *line)
 {
-	t_command	*init;
-
-	init = data->command;
-	while (data->command)
-	{
-		if (!ft_strncmp(data->command->cmd, "sa", 3))
-			sa(data);
-		else if (!ft_strncmp(data->command->cmd, "sb", 3))
-			sb(data);
-		else if (!ft_strncmp(data->command->cmd, "rra", 4))
-			rra(data);
-		else if (!ft_strncmp(data->command->cmd, "rrb", 4))
-			rrb(data);
-		else if (!ft_strncmp(data->command->cmd, "rrr", 4))
-			rrr(data);
-		else if (!ft_strncmp(data->command->cmd, "ra", 3))
-			ra(data);
-		else if (!ft_strncmp(data->command->cmd, "rb", 3))
-			rb(data);
-		else if (!ft_strncmp(data->command->cmd, "rr", 3))
-			rr(data);
-		else if (!ft_strncmp(data->command->cmd, "pa", 3))
-			pa(data);
-		else if (!ft_strncmp(data->command->cmd, "pb", 3))
-			pb(data);
-		else
-			ft_error("Wrong commands", data);
-		print_stack(data);
-		data->command = data->command->next;
-	}
-	data->command = init;
+	if (!ft_strncmp(line, "sa", 3))
+		sa(data);
+	else if (!ft_strncmp(line, "sb", 3))
+		sb(data);
+	else if (!ft_strncmp(line, "rra", 4))
+		rra(data);
+	else if (!ft_strncmp(line, "rrb", 4))
+		rrb(data);
+	else if (!ft_strncmp(line, "rrr", 4))
+		rrr(data);
+	else if (!ft_strncmp(line, "ra", 3))
+		ra(data);
+	else if (!ft_strncmp(line, "rb", 3))
+		rb(data);
+	else if (!ft_strncmp(line, "rr", 3))
+		rr(data);
+	else if (!ft_strncmp(line, "pa", 3))
+		pa(data);
+	else if (!ft_strncmp(line, "pb", 3))
+		pb(data);
+	else
+		ft_error("Wrong commands", data);
 }
 
 void	parsing_nb(t_data *data, char **av)

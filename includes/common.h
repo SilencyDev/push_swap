@@ -6,7 +6,7 @@
 /*   By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 16:31:02 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/05/03 16:13:46 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/05/27 14:53:48 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void			solving(t_data *data, int ac);
 void			parsing_nb2(t_data *data, char **av, int ac);
 void			ft_free2(t_command *command);
 void			ft_free(t_stack *data);
-void			check_cmd(t_data *data);
+void			check_cmd(t_data *data, char *line);
 t_data			*init(t_data *data);
 void			parsing_nb(t_data *data, char **av);
 t_command		*ft_lstnew2(t_command *next, t_command *previous);

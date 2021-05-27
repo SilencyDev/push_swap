@@ -6,7 +6,7 @@
 /*   By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 14:30:21 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/05/26 19:30:04 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/05/27 15:11:14 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ int	main(int ac, char **av)
 			return (0);
 		// print_stack(&data);
 		solving(&data, ac);
+		// while (1)
+		// 	;
 		ft_status(3, &data);
 	}
 	return (0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmacquet <kmacquet@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 11:03:14 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/04/27 17:52:22 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/05/27 15:05:42 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 void	ft_error(char *s, t_data *data)
 {
-	write(1, "Error\n", 6);
-	write(1, s, ft_strlen(s));
+	write(2, "Error\n", 6);
+	write(2, s, ft_strlen(s));
+	write(2, "\n", 1);
 	if (data)
 	{
 		ft_free(data->stack_a);

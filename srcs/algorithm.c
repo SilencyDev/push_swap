@@ -6,7 +6,7 @@
 /*   By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 18:40:07 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/05/26 19:40:41 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/05/27 15:17:28 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ void	xxs_ralgob(t_data *data)
 void	s_algo(t_data *data)
 {
 	int	i;
-	static int	group = 1;
+	int	group = 1;
 	int	nb_left;
 	int	ret;
 
