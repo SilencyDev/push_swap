@@ -6,7 +6,7 @@
 /*   By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 18:40:07 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/05/27 15:17:28 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/05/27 18:46:22 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,34 +130,42 @@ void	s_algo(t_data *data)
 			ret = 0;
 			nb_left = count_group(data->stack_a);
 			new_pivot(data, 'a', nb_left);
-			while (nb_left > 1)
+			if (nb_left == 2)
+				xxs_algo(data);
+			else
 			{
-				if (nb_left == 3 && data->stack_a->group == 0)
+				while (nb_left)
+				{
+					// print_stack(data);
+					if (data->stack_a->i < data->pivot)
+					{
+						write(1, "pb\n", 3);
+						pb(data);
+						data->stack_b->group = group;
+					}
+					else if (nb_left > 0)
+					{
+						write(1, "ra\n", 3);
+						ra(data);
+						ret++;
+					}
+					// print_stack(data);
+					nb_left--;
+					// printf("[nb_left:%d]\n", nb_left);
+				}
+				group++;
+				if (count_stack(data->stack_a) == 3 && data->stack_a->group == 0)
 					xs_algo(data);
-				if (nb_left == 2)
-					xxs_algo(data);
-				if (data->stack_a->i < data->pivot)
+				else
 				{
-					write(1, "pb\n", 3);
-					pb(data);
-					data->stack_b->group = group;
+					while (ret-- && data->stack_a && data->stack_a->next)
+					{
+						write(1, "rra\n", 4);
+						rra(data);
+					}
 				}
-				else if (nb_left > 0)
-				{
-					write(1, "ra\n", 3);
-					ra(data);
-					ret++;
-				}
-				// print_stack(data);
-				nb_left--;
-				// printf("[nb_left:%d]\n", nb_left);
 			}
-			group++;
-			while (ret--)
-			{
-				write(1, "rra\n", 4);
-				rra(data);
-			}
+			// print_stack(data);
 			// printf("[%d]\n", ret);
 		}
 		ret = 0;
@@ -166,6 +174,7 @@ void	s_algo(t_data *data)
 		new_pivot(data, 'b', nb_left);
 		while (nb_left)
 		{
+			// print_stack(data);
 			if (data->stack_b->i >= data->pivot || !data->stack_b->next)
 			{
 				write(1, "pa\n", 3);
@@ -182,11 +191,12 @@ void	s_algo(t_data *data)
 			nb_left--;
 		}
 		group++;
-		while (ret--)
+		while (ret-- && data->stack_b && data->stack_b->next)
 		{
 			write(1, "rrb\n", 4);
 			rrb(data);
 		}
+		// print_stack(data);
 	}
 }
 

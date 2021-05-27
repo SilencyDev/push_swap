@@ -6,7 +6,7 @@
 #    By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/30 13:54:50 by kmacquet          #+#    #+#              #
-#    Updated: 2021/05/27 15:09:13 by kmacquet         ###   ########.fr        #
+#    Updated: 2021/05/27 16:26:50 by kmacquet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,10 +30,10 @@ RM = rm -rf
 all : $(NAME1) $(NAME2)
 
 $(NAME1) : $(OBJS1)
-	$(CC) $(FLAGS) $(OBJS1) -o $(NAME1)
+	$(CC) $(FLAGS) $(OBJS1) -o $(NAME1) -g -fsanitize=address
 
 $(NAME2) : $(OBJS2)
-	$(CC) $(FLAGS) $(OBJS2) -o $(NAME2)
+	$(CC) $(FLAGS) $(OBJS2) -o $(NAME2) -g -fsanitize=address
 
 clean :
 	$(RM) $(OBJS1)
