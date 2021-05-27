@@ -6,7 +6,7 @@
 /*   By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 16:45:26 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/05/27 16:47:19 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/05/27 20:04:06 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void		ra(t_data *data)
 	t_stack	*s_init;
 	t_stack	*new_first;
 
-	if (!data->stack_a && !data->stack_a->next)
+	if (!data->stack_a || !data->stack_a->next)
 		return ;
 	s_init = data->stack_a;
 	(data->stack_a->next)->previous = NULL;
@@ -35,7 +35,7 @@ void		rb(t_data *data)
 	t_stack	*s_init;
 	t_stack	*new_first;
 
-	if (!data->stack_b && !data->stack_b->next)
+	if (!data->stack_b || !data->stack_b->next)
 		return ;
 	s_init = data->stack_b;
 	(data->stack_b->next)->previous = NULL;

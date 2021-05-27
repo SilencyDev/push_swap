@@ -6,7 +6,7 @@
 /*   By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 18:40:07 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/05/27 18:46:22 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/05/27 19:16:35 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,8 @@ void	s_algo(t_data *data)
 			new_pivot(data, 'a', nb_left);
 			if (nb_left == 2)
 				xxs_algo(data);
+			else if (nb_left == 3 && data->stack_a->group == 0)
+				xs_algo(data);
 			else
 			{
 				while (nb_left)
@@ -172,31 +174,43 @@ void	s_algo(t_data *data)
 		nb_left = count_group(data->stack_b);
 		// printf("[nb_left B%d]\n", nb_left);
 		new_pivot(data, 'b', nb_left);
-		while (nb_left)
+		if (nb_left == 2)
 		{
 			// print_stack(data);
-			if (data->stack_b->i >= data->pivot || !data->stack_b->next)
+			xxs_ralgob(data);
+			write(1, "pa\npa\n", 6);
+			pa(data);
+			pa(data);
+			// print_stack(data);
+		}
+		else
+		{
+			while (nb_left)
 			{
-				write(1, "pa\n", 3);
-				pa(data);
-				data->stack_a->group = group;
+				// print_stack(data);
+				if (data->stack_b->i >= data->pivot || !data->stack_b->next)
+				{
+					write(1, "pa\n", 3);
+					pa(data);
+					data->stack_a->group = group;
+				}
+				else
+				{
+					write(1, "rb\n", 3);
+					rb(data);
+					ret++;
+				}
+				// print_stack(data);
+				nb_left--;
 			}
-			else
+			group++;
+			while (ret-- && data->stack_b && data->stack_b->next)
 			{
-				write(1, "rb\n", 3);
-				rb(data);
-				ret++;
+				write(1, "rrb\n", 4);
+				rrb(data);
 			}
 			// print_stack(data);
-			nb_left--;
 		}
-		group++;
-		while (ret-- && data->stack_b && data->stack_b->next)
-		{
-			write(1, "rrb\n", 4);
-			rrb(data);
-		}
-		// print_stack(data);
 	}
 }
 
