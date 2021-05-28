@@ -6,7 +6,7 @@
 /*   By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 14:30:01 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/05/28 07:27:21 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/05/28 14:31:15 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	main(int ac, char **av)
 
 	if (ac >= 2)
 	{
+		if (!av[1][0])
+			return (0);
 		data = *init(&data);
 		if (ac == 2)
 			parsing_nb(&data, av);
