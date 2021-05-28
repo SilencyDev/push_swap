@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmacquet <kmacquet@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 13:45:16 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/04/27 16:09:24 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/05/28 08:13:21 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,6 @@ void	ft_lstadd_frontb(t_data *data, t_stack *new)
 	data->stack_b = new;
 }
 
-void	ft_lstadd_back(t_stack **alst, t_stack *new)
-{
-	if (!new)
-		return ;
-	if (!*alst)
-	{
-		*alst = new;
-		return ;
-	}
-	new->previous = ft_lstlast(*alst);
-	new->previous->next = new;
-}
-
 t_stack	*ft_lstlast(t_stack *lst)
 {
 	while (lst)
@@ -52,22 +39,12 @@ t_stack	*ft_lstlast(t_stack *lst)
 	return (lst);
 }
 
-t_stack	*ft_lstfirst(t_stack *lst)
-{
-	while (lst)
-	{
-		if (!lst->previous)
-			return (lst);
-		lst = lst->previous;
-	}
-	return (lst);
-}
-
 t_stack	*ft_lstnew(t_stack *next, t_stack *previous)
 {
 	t_stack	*list;
 
-	if (!(list = malloc(sizeof(t_stack))))
+	list = malloc(sizeof(t_stack));
+	if (!list)
 		return (NULL);
 	list->next = next;
 	list->previous = previous;
@@ -78,14 +55,15 @@ t_command	*ft_lstnew2(t_command *next, t_command *previous)
 {
 	t_command	*list;
 
-	if (!(list = malloc(sizeof(t_command))))
+	list = malloc(sizeof(t_command));
+	if (!list)
 		return (NULL);
 	list->next = next;
 	list->previous = previous;
 	return (list);
 }
 
-int		ft_strncmp(const char *s1, const char *s2, size_t n)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	unsigned int	i;
 	unsigned char	*c1;

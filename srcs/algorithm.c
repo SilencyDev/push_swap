@@ -6,7 +6,7 @@
 /*   By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 18:40:07 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/05/27 19:16:35 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/05/28 07:58:21 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,8 @@ void	xs_algo(t_data *data)
 		&& data->stack_a->next->next->i < data->stack_a->next->i
 		&& data->stack_a->i > data->stack_a->next->i)
 	{
-		write(1, "sa\n", 3);
+		write(1, "sa\nrra\n", 7);
 		sa(data);
-		write(1, "rra\n", 4);
 		rra(data);
 	}
 	else if (data->stack_a->next->next->i < data->stack_a->i
@@ -46,44 +45,6 @@ void	xs_algo(t_data *data)
 		write(1, "sa\n", 3);
 		sa(data);
 	}
-	// print_stack(data);
-}
-
-void	xs_ralgob(t_data *data)
-{
-	if (data->stack_b->next->next->i > data->stack_b->i
-		&& data->stack_b->next->next->i > data->stack_b->next->i
-		&& data->stack_b->i < data->stack_b->next->i)
-	{
-		write(1, "sb\n", 3);
-		sb(data);
-		write(1, "rrb\n", 4);
-		rrb(data);
-	}
-	else if (data->stack_b->next->next->i > data->stack_b->i
-		&& data->stack_b->next->next->i > data->stack_b->next->i)
-	{
-		write(1, "rrb\n", 4);
-		rrb(data);
-	}
-	else if (data->stack_b->next->i < data->stack_b->i
-		&& data->stack_b->next->i < data->stack_b->next->next->i)
-	{
-		write(1, "sb\nrb\n", 6);
-		sb(data);
-		rb(data);
-	}
-	else if (data->stack_b->i < data->stack_b->next->next->i)
-	{
-		write(1, "rb\n", 3);
-		rb(data);
-	}
-	else if (data->stack_b->i < data->stack_b->next->i)
-	{
-		write(1, "sb\n", 3);
-		sb(data);
-	}
-	// print_stack(data);
 }
 
 void	xxs_algo(t_data *data)
@@ -93,17 +54,6 @@ void	xxs_algo(t_data *data)
 		write(1, "sa\n", 3);
 		sa(data);
 	}
-	// print_stack(data);
-}
-
-void	xxs_ralgo(t_data *data)
-{
-	if (data->stack_a->i < data->stack_a->next->i)
-	{
-		write(1, "sa\n", 3);
-		sa(data);
-	}
-	// print_stack(data);
 }
 
 void	xxs_ralgob(t_data *data)
@@ -113,15 +63,14 @@ void	xxs_ralgob(t_data *data)
 		write(1, "sb\n", 3);
 		sb(data);
 	}
-	// print_stack(data);
 }
 
 void	s_algo(t_data *data)
 {
-	int	i;
-	int	group = 1;
-	int	nb_left;
-	int	ret;
+	int			i;
+	static int	group = 1;
+	int			nb_left;
+	int			ret;
 
 	while (!is_solved2(data))
 	{
@@ -138,7 +87,6 @@ void	s_algo(t_data *data)
 			{
 				while (nb_left)
 				{
-					// print_stack(data);
 					if (data->stack_a->i < data->pivot)
 					{
 						write(1, "pb\n", 3);
@@ -151,9 +99,7 @@ void	s_algo(t_data *data)
 						ra(data);
 						ret++;
 					}
-					// print_stack(data);
 					nb_left--;
-					// printf("[nb_left:%d]\n", nb_left);
 				}
 				group++;
 				if (count_stack(data->stack_a) == 3 && data->stack_a->group == 0)
@@ -167,27 +113,21 @@ void	s_algo(t_data *data)
 					}
 				}
 			}
-			// print_stack(data);
-			// printf("[%d]\n", ret);
 		}
 		ret = 0;
 		nb_left = count_group(data->stack_b);
-		// printf("[nb_left B%d]\n", nb_left);
 		new_pivot(data, 'b', nb_left);
 		if (nb_left == 2)
 		{
-			// print_stack(data);
 			xxs_ralgob(data);
 			write(1, "pa\npa\n", 6);
 			pa(data);
 			pa(data);
-			// print_stack(data);
 		}
 		else
 		{
 			while (nb_left)
 			{
-				// print_stack(data);
 				if (data->stack_b->i >= data->pivot || !data->stack_b->next)
 				{
 					write(1, "pa\n", 3);
@@ -200,7 +140,6 @@ void	s_algo(t_data *data)
 					rb(data);
 					ret++;
 				}
-				// print_stack(data);
 				nb_left--;
 			}
 			group++;
@@ -209,7 +148,6 @@ void	s_algo(t_data *data)
 				write(1, "rrb\n", 4);
 				rrb(data);
 			}
-			// print_stack(data);
 		}
 	}
 }

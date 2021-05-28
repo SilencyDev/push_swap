@@ -6,7 +6,7 @@
 /*   By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 17:23:22 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/05/27 16:46:42 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/05/28 07:30:34 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	pa(t_data *data)
 {
-	t_stack *stack;
+	t_stack	*stack;
 
 	if (!data->stack_b)
 		return ;
@@ -31,7 +31,7 @@ void	pa(t_data *data)
 
 void	pb(t_data *data)
 {
-	t_stack *stack;
+	t_stack	*stack;
 
 	if (!data->stack_a)
 		return ;

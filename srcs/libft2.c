@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   libft2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmacquet <kmacquet@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 13:47:39 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/04/03 19:35:56 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/05/28 07:49:20 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/common.h"
 
-char				is_charset(char c, char *charset)
+char	is_charset(char c, char *charset)
 {
 	while (*charset)
 		if (*charset++ == c)
@@ -20,7 +20,7 @@ char				is_charset(char c, char *charset)
 	return (0);
 }
 
-int			ft_countword(char *str, char *charset)
+int	ft_countword(char *str, char *charset)
 {
 	int	i;
 
@@ -39,7 +39,7 @@ int			ft_countword(char *str, char *charset)
 	return (i);
 }
 
-void		ft_strcpy(char *start, char *str, char *dest)
+void	ft_strcpy(char *start, char *str, char *dest)
 {
 	int	j;
 
@@ -49,7 +49,7 @@ void		ft_strcpy(char *start, char *str, char *dest)
 	dest[j] = '\0';
 }
 
-char		**ft_split_str(char *s, char *charset, t_data *data)
+char	**ft_split_str(char *s, char *charset, t_data *data)
 {
 	char	**dest;
 	char	*start;
@@ -60,9 +60,11 @@ char		**ft_split_str(char *s, char *charset, t_data *data)
 	str = (char *)s;
 	if (!s)
 		return (NULL);
-	if (!(dest = malloc(sizeof(char *) * ((data->y_max = ft_countword(str, charset)) + 1))))
+	dest = malloc(sizeof(char *) * ((data->y_max = ft_countword(str, charset)) + 1));
+	if (!dest)
 		return (NULL);
 	while (*str)
+	{
 		if (!is_charset(*str, charset))
 		{
 			start = str;
@@ -74,15 +76,16 @@ char		**ft_split_str(char *s, char *charset, t_data *data)
 		}
 		else
 			str++;
+	}
 	dest[i] = NULL;
 	return (dest);
 }
 
-long int		ft_atoi(char *s)
+int	ft_atoi(char *s)
 {
-	int	i;
-	int	sign;
-	long int	result;
+	int		i;
+	int		sign;
+	double	result;
 
 	sign = 1;
 	i = 0;

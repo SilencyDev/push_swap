@@ -6,7 +6,7 @@
 /*   By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 10:52:48 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/04/02 13:11:53 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/05/28 08:08:22 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,16 @@ int	get_next_line(char **line)
 	char	c;
 	char	*tmp;
 
-	r = 0; 
+	r = 0;
 	l = 1;
-	if (!(*line = malloc(l)))
+	*line = malloc(l);
+	if (!*line)
 		return (-1);
 	(*line)[0] = 0;
 	while ((r = read(0, &c, 1)) && l++ && c != '\n')
 	{
-		if (!(tmp = malloc(l)))
+		tmp = malloc(l);
+		if (!tmp)
 		{
 			free(*line);
 			return (-1);

@@ -6,19 +6,19 @@
 /*   By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 16:59:14 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/05/27 14:53:15 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/05/28 07:38:44 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/common.h"
 
-void		parsing_cmd(t_data *data)
+void	parsing_cmd(t_data *data)
 {
-	int		ret;
-	char	*line;
+	int			ret;
+	char		*line;
 	t_command	*tmp;
 	t_command	*ctmp;
-	int		i;
+	int			i;
 
 	ret = 1;
 	line = NULL;
@@ -86,7 +86,7 @@ void	parsing_nb(t_data *data, char **av)
 	int		y;
 	t_stack	*tmp;
 	t_stack	*init;
-	
+
 	y = 0;
 	number = ft_split_str(av[1], " ", data);
 	while (y < data->y_max && number[y])
@@ -118,7 +118,7 @@ void	parsing_nb2(t_data *data, char **av, int ac)
 	int		y;
 	t_stack	*tmp;
 	t_stack	*init;
-	
+
 	y = 1;
 	while (y < ac && av[y])
 	{

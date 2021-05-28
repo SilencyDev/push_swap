@@ -6,7 +6,7 @@
 /*   By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 16:31:02 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/05/27 14:53:48 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/05/28 08:13:25 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void			check_cmd(t_data *data, char *line);
 t_data			*init(t_data *data);
 void			parsing_nb(t_data *data, char **av);
 t_command		*ft_lstnew2(t_command *next, t_command *previous);
-long int		ft_atoi(char *s);
+int				ft_atoi(char *s);
 char			is_charset(char c, char *charset);
 char			**ft_split_str(char *s, char *charset, t_data *data);
 void			ft_strcpy(char *start, char *str, char *dest);
@@ -80,7 +80,6 @@ void			ft_lstadd_front(t_data *data, t_stack *new);
 void			ft_lstadd_frontb(t_data *data, t_stack *new);
 void			ft_lstadd_back(t_stack **alst, t_stack *new);
 t_stack			*ft_lstlast(t_stack *lst);
-t_stack			*ft_lstfirst(t_stack *lst);
 t_stack			*ft_lstnew(t_stack *next, t_stack *previous);
 int				ft_strlen(char *s);
 void			ft_error(char *s, t_data *data);

@@ -6,13 +6,13 @@
 /*   By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 16:45:26 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/05/27 20:04:06 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/05/28 07:29:33 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/common.h"
 
-void		ra(t_data *data)
+void	ra(t_data *data)
 {
 	t_stack	*s_init;
 	t_stack	*new_first;
@@ -30,7 +30,7 @@ void		ra(t_data *data)
 	data->stack_a = new_first;
 }
 
-void		rb(t_data *data)
+void	rb(t_data *data)
 {
 	t_stack	*s_init;
 	t_stack	*new_first;
