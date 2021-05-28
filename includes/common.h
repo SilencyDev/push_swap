@@ -6,7 +6,7 @@
 /*   By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 16:31:02 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/05/28 12:08:31 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/05/28 15:44:30 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct s_command	t_command;
 struct			s_data
 {
 	int			y;
+	int			error;
 	int			group;
 	int			ret;
 	int			pivot;

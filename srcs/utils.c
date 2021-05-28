@@ -6,7 +6,7 @@
 /*   By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 10:52:48 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/05/28 10:37:31 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/05/28 16:54:12 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ int	get_next_line(char **line)
 			return (-1);
 		r = read(0, &c, 1);
 	}
+	if (c != '\n')
+		write(2, "  \n", 3);
 	return (r);
 }
 
@@ -78,6 +80,7 @@ t_data	*init(t_data *data)
 	data->pivot = 0;
 	data->y_max = 0;
 	data->y = 0;
+	data->error = 0;
 	return (data);
 }
 
@@ -85,7 +88,7 @@ int	ft_atoi(char *s)
 {
 	int		i;
 	int		sign;
-	double	result;
+	long	result;
 
 	sign = 1;
 	i = 0;
@@ -94,11 +97,15 @@ int	ft_atoi(char *s)
 		if (s[i++] == '-')
 			sign = -1;
 	if (s[i] >= '0' && s[i] <= '9')
+	{
 		while (s[i] >= '0' && s[i] <= '9')
+		{
 			result = result * 10 + (s[i++] - '0');
+			if ((result * sign) > INT_MAX || (result * sign) < INT_MIN)
+				ft_error("Arguments can't be higher/lower than INT", NULL);
+		}
+	}
 	else
 		ft_error("Argument isn't an integer", NULL);
-	if (result > INT_MAX || result < INT_MIN)
-		ft_error("Arguments can't be higher/lower than INT", NULL);
 	return (result * sign);
 }
