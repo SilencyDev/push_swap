@@ -6,7 +6,7 @@
 /*   By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 16:31:02 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/05/28 08:13:25 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/05/28 09:06:25 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ typedef struct	s_command t_command;
 
 struct			s_data
 {
-	int			current_group;
-	int			next_group;
+	int			group;
+	int			ret;
 	int			pivot;
 	int			y_max;
 	int			a_size;
@@ -51,12 +51,13 @@ struct			s_stack
 	t_stack		*previous;
 };
 
-int			pre_solved(t_data *data);
+int				pre_solved(t_data *data);
 int				count_group(t_stack *stack);
 int				count_stack(t_stack *stack);
 void			s_algo(t_data *data);
 void			xs_algo(t_data *data);
 void			xxs_algo(t_data *data);
+void			xxs_ralgob(t_data *data);
 void			solving(t_data *data, int ac);
 void			parsing_nb2(t_data *data, char **av, int ac);
 void			ft_free2(t_command *command);
@@ -74,12 +75,12 @@ int				get_next_line(char **line);
 void			parsing_cmd(t_data *data);
 void			is_solved(t_data *data);
 int				is_solved2(t_data *data);
+int				is_solved_tab(int *av, t_data *data);
 void			ft_status(int status, t_data *data);
 void			print_stack(t_data *data);
 void			ft_lstadd_front(t_data *data, t_stack *new);
 void			ft_lstadd_frontb(t_data *data, t_stack *new);
 void			ft_lstadd_back(t_stack **alst, t_stack *new);
-t_stack			*ft_lstlast(t_stack *lst);
 t_stack			*ft_lstnew(t_stack *next, t_stack *previous);
 int				ft_strlen(char *s);
 void			ft_error(char *s, t_data *data);

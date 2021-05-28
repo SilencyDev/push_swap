@@ -6,7 +6,7 @@
 /*   By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 13:45:16 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/05/28 08:13:21 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/05/28 08:34:28 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,6 @@ void	ft_lstadd_frontb(t_data *data, t_stack *new)
 		data->stack_b->previous = new;
 	new->next = data->stack_b;
 	data->stack_b = new;
-}
-
-t_stack	*ft_lstlast(t_stack *lst)
-{
-	while (lst)
-	{
-		if (!lst->next)
-			return (lst);
-		lst = lst->next;
-	}
-	return (lst);
 }
 
 t_stack	*ft_lstnew(t_stack *next, t_stack *previous)
