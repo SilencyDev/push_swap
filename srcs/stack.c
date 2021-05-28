@@ -6,7 +6,7 @@
 /*   By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 11:08:55 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/05/28 11:07:53 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/05/28 12:06:20 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,9 @@ void	new_pivot(t_data *data, char c, int size)
 	t_stack	*init;
 	t_stack	*stack;
 
-	tab = malloc(size);
+	stack = NULL;
+	init = NULL;
+	tab = malloc(sizeof(int) * size);
 	if (!tab)
 		ft_error("Malloc failed", data);
 	data->y = 0;

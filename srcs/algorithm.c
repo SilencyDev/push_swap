@@ -6,7 +6,7 @@
 /*   By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 18:40:07 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/05/28 08:57:02 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/05/28 11:59:20 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	xxs_ralgob(t_data *data)
 	}
 }
 
-void	solving(t_data *data, int ac)
+void	solving(t_data *data)
 {
 	if (data->y_max == 2)
 		xxs_algo(data);

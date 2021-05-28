@@ -6,7 +6,7 @@
 /*   By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 16:59:14 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/05/28 10:45:51 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/05/28 11:59:00 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	parsing_cmd(t_data *data)
 	ret = 1;
 	line = NULL;
 	ctmp = NULL;
+	tmp = NULL;
 	while (ret == 1)
 	{
 		data->y = -1;
@@ -114,7 +115,6 @@ void	parsing_nb(t_data *data, char **av)
 
 void	parsing_nb2(t_data *data, char **av, int ac)
 {
-	char	**number;
 	int		y;
 	t_stack	*tmp;
 	t_stack	*init;

@@ -6,7 +6,7 @@
 /*   By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 16:31:02 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/05/28 10:37:19 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/05/28 12:08:31 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 # include <stdlib.h>
 # include <limits.h>
 
-typedef struct	s_stack t_stack;
-typedef struct	s_data t_data;
-typedef struct	s_command t_command;
+typedef struct s_stack		t_stack;
+typedef struct s_data		t_data;
+typedef struct s_command	t_command;
 
 struct			s_data
 {
@@ -33,7 +33,7 @@ struct			s_data
 	int			group_size;
 	t_stack		*stack_a;
 	t_stack		*stack_b;
-	t_command 	*command;
+	t_command	*command;
 };
 
 struct			s_command
@@ -42,7 +42,6 @@ struct			s_command
 	t_command	*next;
 	t_command	*previous;
 };
-
 
 struct			s_stack
 {
@@ -62,7 +61,7 @@ void			s_algo_presolved(t_data *data);
 void			xs_algo(t_data *data);
 void			xxs_algo(t_data *data);
 void			xxs_ralgob(t_data *data);
-void			solving(t_data *data, int ac);
+void			solving(t_data *data);
 void			parsing_nb2(t_data *data, char **av, int ac);
 void			ft_free2(t_command *command);
 void			ft_free(t_stack *data);

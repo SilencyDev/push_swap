@@ -6,7 +6,7 @@
 /*   By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 13:47:39 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/05/28 09:30:04 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/05/28 11:58:06 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ char	**ft_split_str(char *s, char *charset, t_data *data)
 	char	*str;
 
 	str = (char *)s;
+	start = NULL;
 	if (!s)
 		return (NULL);
 	dest = malloc(sizeof(char *)

@@ -6,7 +6,7 @@
 /*   By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 18:40:07 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/05/28 09:20:13 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/05/28 11:59:40 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ void	s_algo_presolved(t_data *data)
 
 void	s_algo(t_data *data)
 {
-	int			i;
 	int			nb_left;
 
 	data->group = 1;

@@ -6,7 +6,7 @@
 /*   By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 14:30:21 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/05/28 07:20:37 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/05/28 12:06:56 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int ac, char **av)
 		if (!data.stack_a)
 			return (0);
 		new_pivot(&data, 'a', count_stack(data.stack_a));
-		solving(&data, ac);
+		solving(&data);
 		ft_status(3, &data);
 	}
 	return (0);
