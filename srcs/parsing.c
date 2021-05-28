@@ -6,11 +6,35 @@
 /*   By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 16:59:14 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/05/28 07:38:44 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/05/28 10:45:51 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/common.h"
+
+t_command	*parsing_cmd2(t_data *data, char *line,
+	t_command *ctmp, t_command *tmp)
+{
+	if (*line)
+	{
+		check_cmd(data, line);
+		if (!data->command)
+		{
+			data->command = ft_lstnew2(NULL, NULL);
+			ctmp = data->command;
+		}
+		else
+		{
+			tmp = data->command;
+			data->command = ft_lstnew2(NULL, tmp);
+			tmp->next = data->command;
+		}
+		while (line[++data->y])
+			data->command->cmd[data->y] = line[data->y];
+		data->command->cmd[data->y] = 0;
+	}
+	return (ctmp);
+}
 
 void	parsing_cmd(t_data *data)
 {
@@ -18,36 +42,15 @@ void	parsing_cmd(t_data *data)
 	char		*line;
 	t_command	*tmp;
 	t_command	*ctmp;
-	int			i;
 
 	ret = 1;
 	line = NULL;
 	ctmp = NULL;
 	while (ret == 1)
 	{
-		i = -1;
+		data->y = -1;
 		ret = get_next_line(&line);
-		if (*line)
-		{
-			check_cmd(data, line);
-			if (!data->command)
-			{
-				data->command = ft_lstnew2(NULL, NULL);
-				while (line[++i])
-					data->command->cmd[i] = line[i];
-				data->command->cmd[i] = 0;
-				ctmp = data->command;
-			}
-			else
-			{
-				tmp = data->command;
-				data->command = ft_lstnew2(NULL, tmp);
-				tmp->next = data->command;
-				while (line[++i])
-					data->command->cmd[i] = line[i];
-				data->command->cmd[i] = 0;
-			}
-		}
+		ctmp = parsing_cmd2(data, line, ctmp, tmp);
 		free(line);
 	}
 	if (ctmp)
@@ -83,30 +86,27 @@ void	check_cmd(t_data *data, char *line)
 void	parsing_nb(t_data *data, char **av)
 {
 	char	**number;
-	int		y;
 	t_stack	*tmp;
 	t_stack	*init;
 
-	y = 0;
+	data->y = 0;
 	number = ft_split_str(av[1], " ", data);
-	while (y < data->y_max && number[y])
+	while (data->y < data->y_max && number[data->y])
 	{
 		if (!data->stack_a)
 		{
 			data->stack_a = ft_lstnew(NULL, NULL);
 			init = data->stack_a;
-			init->i = ft_atoi(number[y]);
 		}
 		else
 		{
 			tmp = data->stack_a;
 			data->stack_a = ft_lstnew(NULL, tmp);
 			tmp->next = data->stack_a;
-			data->stack_a->i = ft_atoi(number[y]);
 		}
+		data->stack_a->i = ft_atoi(number[data->y]);
 		data->stack_a->group = 0;
-		free(number[y]);
-		y++;
+		free(number[data->y++]);
 	}
 	free(number);
 	data->stack_a = init;
@@ -126,17 +126,15 @@ void	parsing_nb2(t_data *data, char **av, int ac)
 		{
 			data->stack_a = ft_lstnew(NULL, NULL);
 			init = data->stack_a;
-			init->i = ft_atoi(av[y]);
 		}
 		else
 		{
 			tmp = data->stack_a;
 			data->stack_a = ft_lstnew(NULL, tmp);
 			tmp->next = data->stack_a;
-			data->stack_a->i = ft_atoi(av[y]);
 		}
+		data->stack_a->i = ft_atoi(av[y++]);
 		data->stack_a->group = 0;
-		y++;
 	}
 	data->y_max = y - 1;
 	data->stack_a = init;

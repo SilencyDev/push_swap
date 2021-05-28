@@ -6,7 +6,7 @@
 /*   By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 11:08:55 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/05/28 08:31:44 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/05/28 10:28:21 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,26 @@
 // 	data->stack_a = a;
 // 	data->stack_b = b;
 // }
+
+void	presort_tab(int *av, t_data *data)
+{
+	int	tmp;
+	int	i;
+
+	i = 0;
+	while (data->y_max > i && !is_solved_tab(av, data))
+	{
+		if (data->y_max - 1 != i && av[i] > av[i + 1])
+		{
+			tmp = av[i];
+			av[i] = av[i + 1];
+			av[i + 1] = tmp;
+		}
+		i++;
+	}
+	if (!is_solved_tab(av, data))
+		presort_tab(av, data);
+}
 
 int	pre_solved(t_data *data)
 {

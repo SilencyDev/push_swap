@@ -6,20 +6,14 @@
 /*   By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 11:08:55 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/05/28 08:24:26 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/05/28 11:07:53 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/common.h"
 
-void	new_pivot(t_data *data, char c, int size)
+t_stack	*new_pivot2(t_data *data, char c, t_stack *stack)
 {
-	int		i;
-	int		tab[size];
-	t_stack	*init;
-	t_stack	*stack;
-
-	i = 0;
 	if (c == 'a')
 	{
 		stack = data->stack_a;
@@ -30,17 +24,31 @@ void	new_pivot(t_data *data, char c, int size)
 		stack = data->stack_b;
 		data->b_size = count_group(stack);
 	}
+	return (stack);
+}
+
+void	new_pivot(t_data *data, char c, int size)
+{
+	int		*tab;
+	t_stack	*init;
+	t_stack	*stack;
+
+	tab = malloc(size);
+	if (!tab)
+		ft_error("Malloc failed", data);
+	data->y = 0;
+	stack = new_pivot2(data, c, stack);
 	data->y_max = count_group(stack);
 	data->group_size = count_group(stack);
 	while (stack && size--)
 	{
-		tab[i] = stack->i;
+		tab[data->y++] = stack->i;
 		stack = stack->next;
-		i++;
 	}
 	presort_tab(tab, data);
-	i = 0;
+	data->y = 0;
 	data->pivot = tab[(int)(data->group_size / 2)];
+	free(tab);
 }
 
 int	count_stack(t_stack *stack)

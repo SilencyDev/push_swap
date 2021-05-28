@@ -6,19 +6,38 @@
 /*   By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 10:52:48 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/05/28 09:06:43 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/05/28 10:37:31 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/common.h"
 
+int	get_next_line_tmp(char **line, int l, char c)
+{
+	char	*tmp;
+	int		i;
+
+	tmp = malloc(l);
+	if (!tmp)
+	{
+		free(*line);
+		return (-1);
+	}
+	i = -1;
+	while (++i < l - 2)
+		tmp[i] = (*line)[i];
+	tmp[i] = c;
+	tmp[i + 1] = 0;
+	free(*line);
+	*line = tmp;
+	return (0);
+}
+
 int	get_next_line(char **line)
 {
-	int		i;
 	int		l;
 	int		r;
 	char	c;
-	char	*tmp;
 
 	r = 0;
 	l = 1;
@@ -26,21 +45,12 @@ int	get_next_line(char **line)
 	if (!*line)
 		return (-1);
 	(*line)[0] = 0;
-	while ((r = read(0, &c, 1)) && l++ && c != '\n')
+	r = read(0, &c, 1);
+	while (r && l++ && c != '\n')
 	{
-		tmp = malloc(l);
-		if (!tmp)
-		{
-			free(*line);
+		if (get_next_line_tmp(line, l, c) < 0)
 			return (-1);
-		}
-		i = -1;
-		while (++i < l - 2)
-			tmp[i] = (*line)[i];
-		tmp[i] = c;
-		tmp[i + 1] = 0;
-		free(*line);
-		*line = tmp;
+		r = read(0, &c, 1);
 	}
 	return (r);
 }
@@ -67,25 +77,28 @@ t_data	*init(t_data *data)
 	data->group = 0;
 	data->pivot = 0;
 	data->y_max = 0;
+	data->y = 0;
 	return (data);
 }
 
-void	presort_tab(int *av, t_data *data)
+int	ft_atoi(char *s)
 {
-	int	tmp;
-	int	i;
+	int		i;
+	int		sign;
+	double	result;
 
+	sign = 1;
 	i = 0;
-	while (data->y_max > i && !is_solved_tab(av, data))
-	{
-		if (data->y_max - 1 != i && av[i] > av[i + 1])
-		{
-			tmp = av[i];
-			av[i] = av[i + 1];
-			av[i + 1] = tmp;
-		}
-		i++;
-	}
-	if (!is_solved_tab(av, data))
-		presort_tab(av, data);
+	result = 0;
+	if (s[i] == '-' || s[i] == '+')
+		if (s[i++] == '-')
+			sign = -1;
+	if (s[i] >= '0' && s[i] <= '9')
+		while (s[i] >= '0' && s[i] <= '9')
+			result = result * 10 + (s[i++] - '0');
+	else
+		ft_error("Argument isn't an integer", NULL);
+	if (result > INT_MAX || result < INT_MIN)
+		ft_error("Arguments can't be higher/lower than INT", NULL);
+	return (result * sign);
 }

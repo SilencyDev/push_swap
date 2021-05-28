@@ -6,7 +6,7 @@
 /*   By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 16:31:02 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/05/28 09:06:25 by kmacquet         ###   ########.fr       */
+/*   Updated: 2021/05/28 10:37:19 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct	s_command t_command;
 
 struct			s_data
 {
+	int			y;
 	int			group;
 	int			ret;
 	int			pivot;
@@ -55,6 +56,9 @@ int				pre_solved(t_data *data);
 int				count_group(t_stack *stack);
 int				count_stack(t_stack *stack);
 void			s_algo(t_data *data);
+void			s_algo_a(t_data *data, int nb_left);
+void			s_algo_b(t_data *data, int nb_left);
+void			s_algo_presolved(t_data *data);
 void			xs_algo(t_data *data);
 void			xxs_algo(t_data *data);
 void			xxs_ralgob(t_data *data);
@@ -69,9 +73,11 @@ t_command		*ft_lstnew2(t_command *next, t_command *previous);
 int				ft_atoi(char *s);
 char			is_charset(char c, char *charset);
 char			**ft_split_str(char *s, char *charset, t_data *data);
+void			split_loop(char *str, char **dest, char *charset, char *start);
 void			ft_strcpy(char *start, char *str, char *dest);
 int				ft_countword(char *str, char *charset);
 int				get_next_line(char **line);
+int				get_next_line_tmp(char **line, int l, char c);
 void			parsing_cmd(t_data *data);
 void			is_solved(t_data *data);
 int				is_solved2(t_data *data);
