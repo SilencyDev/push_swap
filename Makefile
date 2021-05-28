@@ -6,12 +6,12 @@
 #    By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/30 13:54:50 by kmacquet          #+#    #+#              #
-#    Updated: 2021/05/28 11:57:12 by kmacquet         ###   ########.fr        #
+#    Updated: 2021/05/28 12:28:41 by kmacquet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
-CFLAGS += -Wall -Wextra -Werror -I./includes
+CFLAGS = -Wall -Wextra -Werror -I./includes
 NAME1 = checker
 SRCS1 = srcs/checker.c srcs/swap.c srcs/push.c \
 		srcs/tobottom.c srcs/totop.c srcs/check.c \
@@ -28,8 +28,16 @@ SRCS2 =	srcs/push_swap.c srcs/swap.c srcs/push.c \
 OBJS2 = $(SRCS2:.c=.o)
 RM = rm -rf
 
+ifdef WITH_BONUS
+	NAME = $(NAME1) $(NAME2)
+else
+	NAME = $(NAME2)
+endif
 
-all : $(NAME1) $(NAME2)
+all : $(NAME)
+
+bonus :
+	make WITH_BONUS=1 all
 
 $(NAME1) : $(OBJS1)
 	$(CC) $(CFLAGS) $(OBJS1) -o $(NAME1)
@@ -47,6 +55,6 @@ fclean : clean
 
 re : fclean all
 
-perfect : all clean
+perfect : bonus clean
 
 .PHONY : re fclean clean all perfect
