@@ -6,7 +6,7 @@
 #    By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/30 13:54:50 by kmacquet          #+#    #+#              #
-#    Updated: 2021/05/28 14:26:14 by kmacquet         ###   ########.fr        #
+#    Updated: 2022/01/17 16:30:40 by kmacquet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,8 +46,8 @@ $(NAME2) : $(OBJS2)
 	$(CC) $(CFLAGS) $(OBJS2) -o $(NAME2)
 
 clean :
-	$(RM) $(OBJS1)
-	$(RM) $(OBJS2)
+	$(RM) $(SRCS1:.c=.o)
+	$(RM) $(SRCS2:.c=.o)
 
 fclean : clean
 	$(RM) $(NAME1)

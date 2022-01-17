@@ -6,40 +6,11 @@
 /*   By: kmacquet <kmacquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 11:08:55 by kmacquet          #+#    #+#             */
-/*   Updated: 2021/05/28 10:28:21 by kmacquet         ###   ########.fr       */
+/*   Updated: 2022/01/17 16:24:30 by kmacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/common.h"
-
-// void	print_stack(t_data *data)
-// {
-// 	t_stack	*a;
-// 	t_stack	*b;
-
-// 	a = data->stack_a;
-// 	b = data->stack_b;
-// 	printf("------\n");
-// 	while (data->stack_a || data->stack_b)
-// 	{
-// 		printf("|%d(%d)  %d(%d)|", data->stack_a ?
-//		data->stack_a->i : 0,data->stack_a ? data->stack_a->group : 0,
-// 		data->stack_b ? data->stack_b->i : 0, data->stack_b ?
-//		data->stack_b->group : 0);
-// 		printf("\n");
-// 		if (data->stack_a && data->stack_a->next)
-// 			data->stack_a = data->stack_a->next;
-// 		else
-// 			data->stack_a = NULL;
-// 		if (data->stack_b && data->stack_b->next)
-// 			data->stack_b = data->stack_b->next;
-// 		else
-// 			data->stack_b = NULL;
-// 	}
-// 	printf("------\n");
-// 	data->stack_a = a;
-// 	data->stack_b = b;
-// }
 
 void	presort_tab(int *av, t_data *data)
 {
